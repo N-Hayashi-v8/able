@@ -1,0 +1,24 @@
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Sass
+.sass-cache/
+*.css.map
+
+# Logs
+*.log
+
+# Node (念のため)
+node_modules/
+
+# Claude Code (マシン固有の権限設定)
+.claude/settings.local.json

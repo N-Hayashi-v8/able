@@ -1,0 +1,9 @@
+@use "foundation/variables" as *;
+@use "foundation/mixin" as *;
+@use "foundation/base";
+
+@use "layout/header";
+@use "layout/main";
+@use "layout/footer";
+
+// object/component, object/project, object/utility は使うときに追記
