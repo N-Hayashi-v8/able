@@ -1,1 +1,24 @@
 // 色・フォント・ブレークポイント等の共通変数
+
+// ===== Color =====
+// テキスト
+$color-text:         #111111; // 基本文字色（黒）
+$color-text-white:   #ffffff; // 反転文字色（白）
+$color-text-date:    #acacac; // 日付文字色
+$color-text-pdf:     #888888; // PDFリンク文字色
+$color-text-related: #666666; // フッター関連コンテンツリンク
+
+// ブランド
+$color-key:          #009360; // キーカラー（ボタン等）
+$color-link-pdf:     #19598a; // 電子公告PDFリンク文字
+
+// 背景
+$color-bg:           #f8f8f8; // ベース背景
+$color-bg-hover:     #eeeeee; // ホバー時背景
+
+// 罫線
+$color-border:       #cfcfcf; // 境界線・区切り線
+
+// ===== Font Family =====
+$font-en: "Barlow", "Noto Sans JP", sans-serif; // 英語・日付（日本語混在時は Noto Sans JP にフォールバック）
+$font-ja: "Noto Sans JP", sans-serif;           // 日本語文章

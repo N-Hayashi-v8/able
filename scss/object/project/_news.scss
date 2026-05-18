@@ -1,0 +1,86 @@
+// .p-news（プレスリリース）
+@use "../../foundation/variables" as *;
+
+.p-news {
+  padding: 10rem 4rem;
+
+  &__inner {
+    position: relative;
+    max-width: 112rem;
+    min-height: 70rem;
+    margin: 0 auto;
+    padding: 6rem 8rem;
+    background-color: $color-bg;
+  }
+
+  &__title {
+    margin-bottom: 4rem;
+    font-family: $font-ja;
+    font-size: 3.8rem;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  &__title-en {
+    margin-left: 2rem;
+    font-family: $font-en;
+    font-size: 2.8rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  &__item {
+    padding: 2rem 0;
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__date {
+    font-family: $font-en;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: $color-text-date;
+  }
+
+  &__company {
+    font-family: $font-en;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: $color-key;
+  }
+
+  &__body {
+    font-family: $font-en;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: calc(29 / 16);
+  }
+
+  &__tag {
+    display: inline-block;
+    margin-left: 0.8rem;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid $color-text-pdf;
+    font-family: $font-en;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1;
+    color: $color-text-pdf;
+    vertical-align: middle;
+  }
+
+  // カード内のボタンは右下に張り出して配置
+  .c-button {
+    position: absolute;
+    right: 7.2rem;
+    bottom: -4rem;
+  }
+}

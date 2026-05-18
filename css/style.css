@@ -1,1 +1,208 @@
-/*# sourceMappingURL=style.css.map */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 2.25;
+  color: #111111;
+}
+
+.l-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: #ffffff;
+  padding: 1.2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.l-header__logo {
+  display: inline-block;
+}
+.l-header__logo img {
+  width: 10.6rem;
+  height: auto;
+  display: block;
+}
+.l-header__list {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+.l-header__item a {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #111111;
+  text-decoration: none;
+}
+.l-header__item a:hover {
+  color: #009360;
+}
+
+main {
+  padding-top: 8rem;
+}
+
+.c-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 32rem;
+  height: 8rem;
+  padding: 0 4rem;
+  background-color: #009360;
+  color: #ffffff;
+  text-decoration: none;
+}
+.c-button__text {
+  font-family: "Barlow", "Noto Sans JP", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.c-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 4rem;
+  width: 2rem;
+  height: 1px;
+  background-color: currentColor;
+  transform: translateY(-50%);
+}
+.c-button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 4rem;
+  width: 0.7rem;
+  height: 1px;
+  background-color: currentColor;
+  transform-origin: right center;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.p-mv {
+  position: relative;
+  width: 100%;
+  min-height: 65rem;
+  overflow: hidden;
+}
+.p-mv__inner {
+  position: relative;
+  width: 100%;
+  height: 65rem;
+}
+.p-mv__img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 75%;
+  height: auto;
+}
+.p-mv__title {
+  position: absolute;
+  top: 40rem;
+  left: 32rem;
+  font-size: 4.8rem;
+  font-weight: 700;
+  line-height: 1.5;
+  z-index: 1;
+}
+.p-mv__text {
+  position: absolute;
+  top: 54rem;
+  left: 32rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 2;
+  z-index: 1;
+}
+.p-mv__scroll {
+  position: absolute;
+  top: 59rem;
+  right: 64rem;
+  width: 1rem;
+  height: 5rem;
+}
+
+.p-news {
+  padding: 10rem 4rem;
+}
+.p-news__inner {
+  position: relative;
+  max-width: 112rem;
+  min-height: 70rem;
+  margin: 0 auto;
+  padding: 6rem 8rem;
+  background-color: #f8f8f8;
+}
+.p-news__title {
+  margin-bottom: 4rem;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 3.8rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.p-news__title-en {
+  margin-left: 2rem;
+  font-family: "Barlow", "Noto Sans JP", sans-serif;
+  font-size: 2.8rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.p-news__item {
+  padding: 2rem 0;
+  border-bottom: 1px solid #cfcfcf;
+}
+.p-news__meta {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+.p-news__date {
+  font-family: "Barlow", "Noto Sans JP", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #acacac;
+}
+.p-news__company {
+  font-family: "Barlow", "Noto Sans JP", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #009360;
+}
+.p-news__body {
+  font-family: "Barlow", "Noto Sans JP", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.8125;
+}
+.p-news__tag {
+  display: inline-block;
+  margin-left: 0.8rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #888888;
+  font-family: "Barlow", "Noto Sans JP", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #888888;
+  vertical-align: middle;
+}
+.p-news .c-button {
+  position: absolute;
+  right: 7.2rem;
+  bottom: -4rem;
+}/*# sourceMappingURL=style.css.map */

@@ -1,1 +1,46 @@
 // .l-header
+@use "../foundation/variables" as *;
+
+.l-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: $color-text-white;
+  padding: 1.2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__logo {
+    display: inline-block;
+
+    img {
+      width: 10.6rem;
+      height: auto;
+      display: block;
+    }
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  &__item {
+    a {
+      font-family: $font-ja;
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1;
+      color: $color-text;
+      text-decoration: none;
+
+      &:hover {
+        color: $color-key;
+      }
+    }
+  }
+}

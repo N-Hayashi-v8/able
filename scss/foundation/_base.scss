@@ -1,1 +1,15 @@
 // body, html などのベーススタイル
+@use "variables" as *;
+
+// 1rem = 10px に揃える（以降のフォントサイズは px ÷ 10 を rem で書く）
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $font-ja;
+  font-weight: 500;
+  font-size: 1.6rem; // = 16px
+  line-height: calc(36 / 16);
+  color: $color-text;
+}

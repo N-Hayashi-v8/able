@@ -6,4 +6,9 @@
 @use "layout/main";
 @use "layout/footer";
 
+@use "object/component/button";
+
+@use "object/project/mv";
+@use "object/project/news";
+
 // object/component, object/project, object/utility は使うときに追記

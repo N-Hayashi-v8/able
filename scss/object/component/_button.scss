@@ -1,0 +1,46 @@
+// .c-button（共通ボタン）
+@use "../../foundation/variables" as *;
+
+.c-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 32rem;
+  height: 8rem;
+  padding: 0 4rem;
+  background-color: $color-key;
+  color: $color-text-white;
+  text-decoration: none;
+
+  &__text {
+    font-family: $font-en;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  // 矢印（横線）
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 4rem;
+    width: 2rem;
+    height: 1px;
+    background-color: currentColor;
+    transform: translateY(-50%);
+  }
+
+  // 矢印（上 barb：右端を支点に -45deg 回転）
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 4rem;
+    width: 0.7rem;
+    height: 1px;
+    background-color: currentColor;
+    transform-origin: right center;
+    transform: translateY(-50%) rotate(45deg);
+  }
+}
