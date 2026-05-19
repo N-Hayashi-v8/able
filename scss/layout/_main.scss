@@ -1,5 +1,7 @@
+@use "../foundation/variables" as *;
 // .l-main
 // ヘッダーが position: fixed のため、コンテンツの最上部がヘッダー高さ分隠れないようにオフセット
 main {
   padding-top: 8rem;
+  background-color: $color-bg;
 }

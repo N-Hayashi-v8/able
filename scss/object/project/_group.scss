@@ -1,0 +1,42 @@
+@use "../../foundation/variables" as *;
+
+.p-group {
+  padding: 12rem 0;
+  background: url("../img/dot_pattern 1.png") repeat;
+
+  &__inner {
+    display: flex;
+    align-items: flex-start;
+    max-width: 128rem;
+    margin: 0 auto;
+  }
+
+  &__content {
+    width: 38rem;
+
+    .c-button {
+      margin-top: 5rem;
+    }
+  }
+
+  &__lead {
+    width: 32rem;
+    margin-top: 4rem;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.8;
+  }
+
+  &__text {
+    width: 28rem;
+    margin-top: 4rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 2;
+  }
+
+  &__img {
+    width: 90rem;
+    height: auto;
+  }
+}

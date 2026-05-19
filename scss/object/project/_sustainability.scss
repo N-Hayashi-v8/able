@@ -1,0 +1,40 @@
+@use "../../foundation/variables" as *;
+
+.p-sustainability {
+  padding: 13rem 0;
+
+  &__inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 8rem;
+  }
+
+  &__img {
+    width: 88rem;
+    height: auto;
+  }
+
+  &__content {
+    width: 64rem;
+    padding: 15rem 0;
+
+    .c-button {
+      width: 40rem;
+      margin-top: 7.2rem;
+    }
+  }
+
+  &__lead {
+    margin-top: 5.6rem;
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1.8;
+  }
+
+  &__text {
+    margin-top: 4rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 2;
+  }
+}

@@ -4,6 +4,68 @@
 
 ---
 
+## 2026-05-19
+
+### やったこと
+
+- 企業理念セクション（`p-philosophy`）SCSS実装
+  - タイトル: 日本語側を `<span>` でラップ、`border-top: 4px solid #111` + `padding-top: 4rem`、英字↔日本字は line-height のみで間隔
+  - キャッチコピー: `trip_pattern 1.png` を背景に repeat、width 60rem + margin-right 4rem で右隙間確保、上下padding 2.4rem
+  - 本文+ボタン: width 64rem、本文 `max-width: 55rem` で折り返し、段落間 3.4rem、本文↔ボタン 7.2rem、ボタン width 56rem
+  - 2カラム配置: `__body` を `display: flex; align-items: flex-start;` で横並び（カラム自然高さ維持）
+- グループ企業セクション（`p-group`）SCSS実装
+  - 背景に `dot_pattern 1.png` を全幅で repeat
+  - `__inner` 128rem 中央寄せ、左 `__content` 38rem + 右 `__img` 90rem（gap 0）
+  - 各要素間: タイトル↔リード 4rem / リード↔本文 4rem / 本文↔ボタン 5rem
+  - リード width 32rem / 本文 width 28rem（285→280に丸め）/ ボタンは c-button デフォルト 32rem
+  - セクション上下padding 12rem
+- サステナビリティセクション（`p-sustainability`）SCSS実装
+  - 全幅レイアウト、画像（地球儀）が画面左端起点
+  - `__inner` flex + gap 8rem、画像 88rem（881→880に丸め）+ `__content` 64rem
+  - `__content` に上下padding 15rem（画像上端からタイトル開始位置をずらす）
+  - 縦間隔: タイトル↔リード 5.6rem / リード↔本文 4rem / 本文↔ボタン 7.2rem
+  - ボタン width 40rem
+  - セクション上下padding 13rem
+- 共通タイトルコンポーネント `c-section-title` を新規作成（philosophy/group/sustainability で再利用）
+  - 構造: `.c-section-title` + `.c-section-title__en` + `.c-section-title__ja`
+  - スタイル: border-top 4px solid #111 / padding-top 4rem / 英字 2.8rem Barlow SemiBold / 日本語 5rem Bold
+- HTMLのタイトル構造を `c-section-title` 系に統一（philosophy/group/sustainability の3箇所）
+- main全体に `background-color: $color-bg` を追加（サイト全体の薄グレー化）
+- p-news カードの背景を `$color-bg` → `$color-text-white` に変更（カードを白で浮き出す）
+
+### 決定事項
+
+- inner幅はセクションごとに異なる（p-news 112rem, p-philosophy/p-group 128rem, p-sustainability 全幅）。Figmaのセクション設計に従う
+- タイトル部分は共通コンポーネント `c-section-title` として切り出し、3セクションで再利用する（FLOCSSの component 層）
+- 各セクションのボタン幅は、`c-button` のデフォルト 32rem を「セクション側で `.c-button` をネスト指定して上書き」する流儀（p-news と同じ）
+- 画像 ↔ コンテンツの flex 横並びは `align-items: flex-start` で固定する（デフォルトの stretch では片方が縦に引き伸ばされるため）
+- 画像の `height` は固定せず `height: auto`（width で自然に決まる）
+- p-philosophy のキャッチコピー右隙間は、当初 `background-clip: content-box` で実装したが、上下paddingの背景も消える問題があり、`width: 60rem` + `margin-right: 4rem` 方式に変更
+- p-sustainability は全幅レイアウトとし、画像は画面左端起点。`__content` 側に内側paddingで縦位置調整
+
+### 触ったファイル
+
+- `index.html`（タイトル3箇所を `c-section-title` 系に統一）
+- `scss/style.scss`（@use 追加: c-section-title, philosophy, group, sustainability）
+- `scss/layout/_main.scss`（`background-color: $color-bg` 追加）
+- `scss/object/component/_section-title.scss`（新規）
+- `scss/object/project/_news.scss`（カード `__inner` 背景色を白に変更）
+- `scss/object/project/_philosophy.scss`（新規作成 → 後にタイトル系を共通化で削除）
+- `scss/object/project/_group.scss`（新規）
+- `scss/object/project/_sustainability.scss`（新規）
+- `docs/TODO.md`、`docs/WORKLOG.md`（更新）
+
+### 未解決
+
+- p-philosophy / p-group のセクション上下padding値が暫定（Figma実測値で要確定）
+- p-philosophy キャッチコピー背景パターン（trip_pattern）の透過処理（保留中、必要なら `::before` + opacity 方式で対応予定）
+- フッター（`l-footer`）未実装
+- FVのキャッチ/本文の位置（前日からの持ち越し）
+- プレスリリースのカード内padding（前日からの持ち越し）
+- レスポンシブ基準とブレークポイント値（前日からの持ち越し）
+
+---
+
 ## 2026-05-18
 
 ### やったこと

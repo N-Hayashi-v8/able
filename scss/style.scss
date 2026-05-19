@@ -7,8 +7,12 @@
 @use "layout/footer";
 
 @use "object/component/button";
+@use "object/component/section-title";
 
 @use "object/project/mv";
 @use "object/project/news";
+@use "object/project/philosophy";
+@use "object/project/group";
+@use "object/project/sustainability";
 
 // object/component, object/project, object/utility は使うときに追記

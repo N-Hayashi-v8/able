@@ -1,0 +1,22 @@
+@use "../../foundation/variables" as *;
+
+.c-section-title {
+  display: inline-block;
+  border-top: 4px solid #111;
+  padding-top: 4rem;
+
+  &__en {
+    display: block;
+    font-family: $font-en;
+    font-size: 2.8rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  &__ja {
+    display: block;
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1.52;
+  }
+}

@@ -1,0 +1,49 @@
+@use "../../foundation/variables" as *;
+
+.p-philosophy {
+  padding: 10rem 0;
+
+  &__inner {
+    max-width: 128rem;
+    margin: 0 auto;
+  }
+
+  &__body {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 12rem;
+  }
+
+  &__lead {
+    width: 60rem;
+    margin-right: 4rem;
+    padding: 2.4rem 0;
+    background: url("../img/trip_pattern 1.png") repeat;
+
+    p {
+      font-size: 4.2rem;
+      font-weight: 700;
+      line-height: 1.86;
+    }
+  }
+
+  &__text {
+    width: 64rem;
+
+    p {
+      max-width: 55rem;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.9;
+    }
+
+    p + p {
+      margin-top: 3.4rem;
+    }
+
+    .c-button {
+      width: 56rem;
+      margin-top: 7.2rem;
+    }
+  }
+}
