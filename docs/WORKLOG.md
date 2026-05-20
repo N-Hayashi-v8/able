@@ -4,6 +4,57 @@
 
 ---
 
+## 2026-05-20
+
+### やったこと
+
+- フッター（`l-footer`）のSCSS実装
+  - 全体: 背景白、`padding-top: 6.4rem`、`__inner` max-width 128rem 中央寄せ
+  - 上段（`__main`）: 「ロゴ ｜ (ナビ + 関連) の2カラム」構造。`align-items: flex-start` + `gap: 20rem`
+  - 右カラム（`__column`）: width 92rem、`flex-direction: column` + `gap: 10.8rem`（ナビ↔関連間）
+  - ロゴ: width 16.4rem、`height: auto`
+  - 主要ナビ: width 64rem、項目gap 4rem、Noto Sans JP Bold 1.4rem（ヘッダーと同運用）
+  - 関連コンテンツ: ラベル左 + リスト右の flex（gap 6rem 暫定）
+  - 関連リスト: CSS Grid 2列×6行（`grid-template-columns: repeat(2, 1fr)`）、column-gap 4rem / row-gap 1.6rem（暫定）
+  - 関連項目の頭の `-` は `a::before` 疑似要素で表現、`display: flex` + `gap: 0.8rem` で折返し時もインデント揃え
+  - 下段（`__bottom`）: `margin-top: 10.4rem` + `border-top: 1px solid $color-border` + 上下padding 2rem、`justify-content: space-between` でサブナビ左 / コピーライト右
+  - サブナビ・コピーライト: Noto Sans JP 1.2rem、色 `$color-text-related`（#666666）
+- HTML（`index.html`）のフッター構造改修
+  - `__inner` ラッパー追加（max-width 中央寄せの基準）
+  - `__main` ラッパー追加（ロゴ+右カラムの2カラム）
+  - `__column` ラッパー追加（ナビ+関連を縦積み）
+  - フッター内ブロックのインデントを階層に合わせて整理
+- 子ページの雛形作成: `pages/philosophy.html`
+  - `index.html` から head / header / footer のみコピーした最低限の状態
+  - 相対パスを `../` 起点に書き換え（css / img / js / ロゴリンク）
+  - `<title>` は「企業理念｜エイブル株式会社-模写」に変更、`<main>` は空
+
+### 決定事項
+
+- フッターは「ロゴ ｜ (ナビ + 関連) の2カラム構造」を採用する。当初は単純な縦積みで実装したが、Figma再確認で2カラムに修正
+- 関連リストは **2列×6行**。当初 3列×4行で実装したが、Figma目視確認で 2列×6行に修正
+- 関連項目の頭の `-` は **`::before` 疑似要素 + flex** で表現する（折返し時のインデント揃え目的）
+- 子ページは `pages/` 配下に配置する。css / img / js などへの参照は `../` 起点の相対パスにする
+- ボーダー色（#cfcfcf）と関連文字色（#666666）は既存変数 `$color-border` / `$color-text-related` を再利用する
+
+### 触ったファイル
+
+- `scss/layout/_footer.scss`（新規実装）
+- `index.html`（フッター部分の HTML 構造を `__inner` / `__main` / `__column` 追加で再構成、インデント整理）
+- `pages/philosophy.html`（新規作成: head / header / footer のみのスケルトン）
+- `docs/TODO.md`、`docs/WORKLOG.md`（更新）
+
+### 未解決
+
+- フッター内の暫定値多数（関連ラベル↔リスト間 / 関連リスト列・行gap / 関連ラベル font-size / サブナビ項目間 gap / フッター下端 padding）
+- `pages/philosophy.html` の `<main>` 本体は未着手（翌日以降）
+- FVのキャッチ/本文の位置、プレスリリースのカード内padding（持ち越し）
+- p-philosophy / p-group のセクション上下padding値（持ち越し）
+- p-philosophy キャッチコピー背景パターンの透過処理（持ち越し）
+- レスポンシブ基準とブレークポイント値（持ち越し）
+
+---
+
 ## 2026-05-19
 
 ### やったこと
