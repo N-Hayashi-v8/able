@@ -4,6 +4,64 @@
 
 ---
 
+## 2026-05-22
+
+### やったこと
+
+- サイト内「企業理念」リンク（`href="#"`のまま）を5箇所すべて設定
+  - `index.html` ヘッダーナビ / p-philosophy ボタン / フッターナビ → `pages/philosophy.html`
+  - `pages/philosophy.html` ヘッダーナビ / フッターナビ → `philosophy.html`（自ページ）
+- トップメッセージセクション実装
+  - クラス命名を `p-philosophy-page__message-*` → `p-top-message__*` に整理（BEM的にクリーンな独立ブロック化）
+  - 新規 `scss/object/project/_top-message.scss` 作成、`scss/style.scss` に `@use` 追加
+  - `__figure` を `display: flex; align-items: center; gap: 0` で写真とキャプションを横並び。画像 width 64rem、キャプション width 40rem（Figma 641/401 → 4の倍数に丸め）
+  - 写真背景 `#E3E4ED` を `margin-right: calc(50% - 50vw)` で inner の外＝画面右端まで伸ばす
+  - キャプション最下行の名前+英字に `__caption-name` / `__caption-en` を付与し、`p:last-child` を `flex-direction: column` で縦並びに
+  - フォント値を Figma 実値で確定: 上ブロック 1.8rem/2, 名前 3.6rem/1.5, 英字 Barlow 2.2rem/1.5
+  - `__title`「トップメッセージ」上に `::before` で 1em × 4px の装飾線（フォントサイズ連動）
+  - `__figure` / `__heading` / `__text` に `margin-left: 24rem` を当て、inner 左端から 24rem 右にインデント（タイトルは inner 左端のまま）
+- 企業理念カードセクション（VISION/MISSION/VALUE）実装
+  - クラス命名を `p-philosophy-page__list-*` → `p-philosophy-cards__*` に整理（独立ブロック化）
+  - VISION本文だけ仕様が違うため `__lead` クラスに分離、MISSIONは `__text`、VALUE は `__bullets`+`__bullet`
+  - 新規 `scss/object/project/_philosophy-cards.scss` 作成、`scss/style.scss` に `@use` 追加
+  - カード列 width 104rem（Figma 1042 → 1040 に丸め）、`margin-left: 24rem`（トップメッセージと揃え）
+  - カード間 border は `__list` 外周 1px + `__item + __item` の `border-top` で 1px 仕切り（重複回避）
+  - 緑サブタイトル Barlow 2.6rem / `$color-key` / line-height 1.5
+  - VISION本文 Noto Sans JP 3.4rem / line-height 1.8（Figma 61/34=1.794 → 1.8 に丸め）
+  - MISSION本文・VALUE項目 Barlow 2rem / line-height 2（`$font-en` で日本語はフォールバック）
+  - VALUE項目の「・」は `::before` 擬似要素 + `padding-left: 1em` で折返しインデント揃え
+  - カード上下padding 7rem（ユーザー指定）、左右padding 8rem（暫定）
+
+### 決定事項
+
+- 各セクションは BEM 原則に揃え、独立ブロックとして切り出す（`p-top-message`, `p-philosophy-cards`）
+- 画面右端まで背景色を伸ばす際は `margin-right: calc(50% - 50vw)` の負margin方式を使う（inner中央寄せ前提）
+- 写真ブロックと本文ブロックは inner から `margin-left: 24rem` の左インデントで位置を揃える。タイトルは inner 左端のまま
+- VISION本文だけフォント仕様が違うため、`__text` ではなく `__lead` クラスを別に切る
+- カード並びの境界線は「外周 border + 内側 border-top」方式で 2px 重複を避ける
+- セクションタイトル上の装飾線（1em × 4px の `::before`）は現状2箇所（top-message / philosophy-cards）で重複容認。3箇所目が出たら mixin 化または `c-section-heading` として共通化する
+- カード幅 1042px は CLAUDE.md 丸めルールで 1040px (= 104rem) に丸めて採用
+
+### 触ったファイル
+
+- `index.html`（企業理念リンク3箇所を設定）
+- `pages/philosophy.html`（main本体のクラス整理、企業理念リンク2箇所を設定、キャプションspanにクラス付与）
+- `scss/object/project/_top-message.scss`（新規）
+- `scss/object/project/_philosophy-cards.scss`（新規）
+- `scss/style.scss`（`@use` を2件追加）
+- `css/style.css`（Live Sass Compiler で自動生成）
+- `docs/TODO.md`、`docs/WORKLOG.md`（更新）
+
+### 未解決
+
+- `_page-title.scss`、`_top-message.scss`、`_philosophy-cards.scss` の各暫定値（セクション上下padding、要素間の縦間隔、カード左右padding 等）を Figma 実測で確定する作業が残る
+- レスポンシブ未対応のため、`margin-left: 24rem` 等の固定値はSP時に圧迫する。ブレークポイントで0に戻す予定
+- PAGE TOP（共通フローティングUI）未実装（持ち越し）
+- フッター/FV/プレスリリースの暫定値（持ち越し）
+- 自ページからのナビリンクは現状リロードする。現在地は無リンク化＋`aria-current="page"`運用に変えるか要検討
+
+---
+
 ## 2026-05-20
 
 ### やったこと

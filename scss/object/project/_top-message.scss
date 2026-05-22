@@ -1,0 +1,94 @@
+@use "../../foundation/variables" as *;
+
+.p-top-message {
+  padding: 12rem 0; // 暫定
+
+  &__inner {
+    max-width: 128rem;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-family: $font-ja;
+    font-weight: 700;
+    font-size: 3.2rem; // 暫定
+    line-height: 1.5;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 1em; // タイトル1文字分（font-size に連動）
+      height: 0.4rem;
+      background: $color-text;
+      margin-bottom: 1.6rem; // 暫定
+    }
+  }
+
+  &__body {
+    margin-top: 6rem; // 暫定
+  }
+
+  &__figure {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: #E3E4ED;
+    margin-left: 24rem;
+    margin-right: calc(50% - 50vw); // inner の外＝画面右端まで背景色を伸ばす
+
+    img {
+      width: 64rem;
+      height: auto;
+    }
+  }
+
+  &__caption {
+    width: 40rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem; // 暫定
+    font-family: $font-ja;
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 2;
+
+    p:last-child {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem; // 暫定
+    }
+
+    &-name {
+      font-family: $font-ja;
+      font-weight: 700;
+      font-size: 3.6rem;
+      line-height: 1.5;
+    }
+
+    &-en {
+      font-family: $font-en;
+      font-weight: 700;
+      font-size: 2.2rem;
+      line-height: 1.5;
+    }
+  }
+
+  &__heading {
+    margin-top: 6rem; // 暫定
+    margin-left: 24rem;
+    font-family: $font-ja;
+    font-weight: 700;
+    font-size: 3.2rem; // 暫定
+    line-height: 1.7;
+  }
+
+  &__text {
+    margin-top: 4rem; // 暫定
+    margin-left: 24rem;
+    max-width: 88rem; // 暫定
+    font-family: $font-ja;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2;
+  }
+}

@@ -1,13 +1,18 @@
 # TODO
 
-> 最終更新: 2026-05-20（本日の作業終了時点）
+> 最終更新: 2026-05-22（本日の作業終了時点）
 > 翌日の作業を整理するファイル。完了したものは WORKLOG.md に移して本ファイルからは削除する。
 
 ---
 
-## 翌日（2026-05-21）にやること
+## 翌日（2026-05-23）にやること
 
-- [ ] `pages/philosophy.html` の `<main>` 本体（企業理念ページの中身）を実装
+- [ ] `pages/philosophy.html` 各セクションの暫定値を実Figma値で確定
+  - p-page-title 周り（breadcrumb の margin-top 4rem / gap 1.6rem 等）
+  - p-top-message の縦間隔（title↔body 6rem / figure↔heading 6rem / heading↔text 4rem / セクション上下padding 12rem）
+  - p-top-message の `__heading` / `__text` のフォント値と本文幅
+  - p-top-message のキャプション内 gap（暫定 1.6rem / 0.8rem）
+  - p-philosophy-cards（title↔list 6rem / カード左右padding 8rem / `__en`↔本文 3.2rem / `__bullets` gap 0.8rem）
 
 ## 近いうちにやること（順不同）
 
@@ -22,6 +27,9 @@
 - [ ] p-philosophy / p-group のセクション上下padding値を実Figma値で確定（暫定値）
 - [ ] p-philosophy キャッチコピー背景パターン（trip_pattern）の透過処理（保留中）
 - [ ] レスポンシブ対応（PC → SP もしくは SP → PC、方針未決）
+- [ ] PAGE TOP（共通フローティングUI）の実装。`<body>` 直下 + `position: fixed` で全ページ共通配置を想定
+- [ ] セクションタイトル装飾線（1em × 4px の `::before`）が3箇所目に出たら mixin/`c-section-heading` 化を検討（現状2箇所で重複）
+- [ ] 自ページからのナビリンクの扱い。現在地は無リンク化 + `aria-current="page"` 運用に変えるか要検討
 
 ## 保留・要確認
 

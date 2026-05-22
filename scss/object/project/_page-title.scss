@@ -1,0 +1,60 @@
+@use "../../foundation/variables" as *;
+
+.p-page-title {
+  padding: 12rem 0;
+
+  &__inner {
+    max-width: 128rem;
+    margin: 0 auto;
+  }
+
+  &__heading {
+    text-align: center;
+  }
+
+  &__en {
+    display: block;
+    font-family: $font-en;
+    font-weight: 700;
+    font-size: 2.8rem;
+    line-height: 4.2rem;
+  }
+
+  &__ja {
+    display: block;
+    font-family: $font-ja;
+    font-weight: 700;
+    font-size: 5rem;
+    line-height: 1.5;
+  }
+
+  &__breadcrumb {
+    margin-top: 4rem; // 暫定
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__breadcrumb-list {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem; // 暫定
+  }
+
+  &__breadcrumb-item {
+    font-family: $font-ja;
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: $color-text;
+
+    a {
+      color: $color-key;
+    }
+
+    &:not(:last-child)::after {
+      content: "—";
+      margin-left: 1.6rem; // 暫定
+      color: $color-border;
+    }
+  }
+}

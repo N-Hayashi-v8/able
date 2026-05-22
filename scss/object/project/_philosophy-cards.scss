@@ -1,0 +1,88 @@
+@use "../../foundation/variables" as *;
+
+.p-philosophy-cards {
+  padding: 12rem 0; // 暫定
+
+  &__inner {
+    max-width: 128rem;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-family: $font-ja;
+    font-weight: 700;
+    font-size: 3.2rem; // 暫定（トップメッセージと揃える）
+    line-height: 1.5;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 1em;
+      height: 0.4rem;
+      background: $color-text;
+      margin-bottom: 1.6rem; // 暫定
+    }
+  }
+
+  &__list {
+    margin-top: 6rem; // 暫定
+    margin-left: 24rem;
+    width: 104rem;
+    border: 1px solid $color-border;
+    background: $color-text-white;
+  }
+
+  &__item {
+    padding: 7rem 8rem; // 上下7rem ユーザー指定 / 左右 8rem 暫定
+
+    & + & {
+      border-top: 1px solid $color-border;
+    }
+  }
+
+  &__en {
+    font-family: $font-en;
+    font-weight: 700;
+    font-size: 2.6rem;
+    line-height: 1.5;
+    color: $color-key;
+  }
+
+  &__lead {
+    margin-top: 3.2rem; // 暫定
+    font-family: $font-ja;
+    font-weight: 700;
+    font-size: 3.4rem;
+    line-height: 1.8; // Figma 61/34 = 1.794 → 1.8 に丸め
+  }
+
+  &__text {
+    margin-top: 3.2rem; // 暫定
+    font-family: $font-en;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 2;
+  }
+
+  &__bullets {
+    margin-top: 3.2rem; // 暫定
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem; // 暫定
+  }
+
+  &__bullet {
+    position: relative;
+    padding-left: 1em; // 「・」の分のインデント
+    font-family: $font-en;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 2;
+
+    &::before {
+      content: "・";
+      position: absolute;
+      left: 0;
+    }
+  }
+}

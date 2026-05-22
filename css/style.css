@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html {
   font-size: 62.5%;
 }
@@ -446,4 +447,210 @@ main {
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 2;
+}
+
+.p-page-title {
+  padding: 12rem 0;
+}
+.p-page-title__inner {
+  max-width: 128rem;
+  margin: 0 auto;
+}
+.p-page-title__heading {
+  text-align: center;
+}
+.p-page-title__en {
+  display: block;
+  font-family: "Barlow", "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: 2.8rem;
+  line-height: 4.2rem;
+}
+.p-page-title__ja {
+  display: block;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: 5rem;
+  line-height: 1.5;
+}
+.p-page-title__breadcrumb {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.p-page-title__breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+.p-page-title__breadcrumb-item {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: #111111;
+}
+.p-page-title__breadcrumb-item a {
+  color: #009360;
+}
+.p-page-title__breadcrumb-item:not(:last-child)::after {
+  content: "—";
+  margin-left: 1.6rem;
+  color: #cfcfcf;
+}
+
+.p-top-message {
+  padding: 12rem 0;
+}
+.p-top-message__inner {
+  max-width: 128rem;
+  margin: 0 auto;
+}
+.p-top-message__title {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: 3.2rem;
+  line-height: 1.5;
+}
+.p-top-message__title::before {
+  content: "";
+  display: block;
+  width: 1em;
+  height: 0.4rem;
+  background: #111111;
+  margin-bottom: 1.6rem;
+}
+.p-top-message__body {
+  margin-top: 6rem;
+}
+.p-top-message__figure {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: #E3E4ED;
+  margin-left: 24rem;
+  margin-right: calc(50% - 50vw);
+}
+.p-top-message__figure img {
+  width: 64rem;
+  height: auto;
+}
+.p-top-message__caption {
+  width: 40rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 2;
+}
+.p-top-message__caption p:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.p-top-message__caption-name {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: 3.6rem;
+  line-height: 1.5;
+}
+.p-top-message__caption-en {
+  font-family: "Barlow", "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  line-height: 1.5;
+}
+.p-top-message__heading {
+  margin-top: 6rem;
+  margin-left: 24rem;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: 3.2rem;
+  line-height: 1.7;
+}
+.p-top-message__text {
+  margin-top: 4rem;
+  margin-left: 24rem;
+  max-width: 88rem;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2;
+}
+
+.p-philosophy-cards {
+  padding: 12rem 0;
+}
+.p-philosophy-cards__inner {
+  max-width: 128rem;
+  margin: 0 auto;
+}
+.p-philosophy-cards__title {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: 3.2rem;
+  line-height: 1.5;
+}
+.p-philosophy-cards__title::before {
+  content: "";
+  display: block;
+  width: 1em;
+  height: 0.4rem;
+  background: #111111;
+  margin-bottom: 1.6rem;
+}
+.p-philosophy-cards__list {
+  margin-top: 6rem;
+  margin-left: 24rem;
+  width: 104rem;
+  border: 1px solid #cfcfcf;
+  background: #ffffff;
+}
+.p-philosophy-cards__item {
+  padding: 7rem 8rem;
+}
+.p-philosophy-cards__item + .p-philosophy-cards__item {
+  border-top: 1px solid #cfcfcf;
+}
+.p-philosophy-cards__en {
+  font-family: "Barlow", "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: 2.6rem;
+  line-height: 1.5;
+  color: #009360;
+}
+.p-philosophy-cards__lead {
+  margin-top: 3.2rem;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: 3.4rem;
+  line-height: 1.8;
+}
+.p-philosophy-cards__text {
+  margin-top: 3.2rem;
+  font-family: "Barlow", "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2;
+}
+.p-philosophy-cards__bullets {
+  margin-top: 3.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.p-philosophy-cards__bullet {
+  position: relative;
+  padding-left: 1em;
+  font-family: "Barlow", "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2;
+}
+.p-philosophy-cards__bullet::before {
+  content: "・";
+  position: absolute;
+  left: 0;
 }/*# sourceMappingURL=style.css.map */
