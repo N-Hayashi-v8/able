@@ -4,6 +4,7 @@
 // 1rem = 10px に揃える（以降のフォントサイズは px ÷ 10 を rem で書く）
 html {
   font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 
 body {

@@ -1,0 +1,11 @@
+@use "../../foundation/variables" as *;
+
+.p-group-visual {
+  // 全幅レイアウト。inner を持たず画面端まで広げる
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}

@@ -8,22 +8,6 @@
     margin: 0 auto;
   }
 
-  &__title {
-    font-family: $font-ja;
-    font-weight: 700;
-    font-size: 3.2rem; // 暫定（トップメッセージと揃える）
-    line-height: 1.5;
-
-    &::before {
-      content: "";
-      display: block;
-      width: 1em;
-      height: 0.4rem;
-      background: $color-text;
-      margin-bottom: 1.6rem; // 暫定
-    }
-  }
-
   &__list {
     margin-top: 6rem; // 暫定
     margin-left: 24rem;

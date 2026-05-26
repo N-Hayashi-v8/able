@@ -8,6 +8,7 @@
 
 @use "object/component/button";
 @use "object/component/section-title";
+@use "object/component/section-heading";
 
 @use "object/project/mv";
 @use "object/project/news";
@@ -17,5 +18,8 @@
 @use "object/project/page-title";
 @use "object/project/top-message";
 @use "object/project/philosophy-cards";
+@use "object/project/group-lead";
+@use "object/project/group-visual";
+@use "object/project/group-list";
 
 // object/component, object/project, object/utility は使うときに追記

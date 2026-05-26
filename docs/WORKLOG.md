@@ -4,6 +4,76 @@
 
 ---
 
+## 2026-05-26
+
+### やったこと
+
+- `pages/group.html` 新規作成（`philosophy.html` をベースに head / header / footer を流用、`<title>` と各種ナビリンクを差し替え）
+- サイト内「グループ企業」リンク（href="#"のまま）を4箇所すべて設定
+  - `index.html` ヘッダーナビ / フッターナビ → `pages/group.html`
+  - `pages/philosophy.html` ヘッダーナビ / フッターナビ → `group.html`
+- `group.html` の `<main>` 本体を実装（4セクション）
+  - `p-page-title`（既存流用、英字 GROUP / 日本字「グループ企業」、breadcrumb 末尾も差替）
+  - `p-group-lead`（リード見出し+本文、中央寄せ。装飾線は見出し下に `::after`、色は `$color-key` 統一）
+  - `p-group-visual`（全幅画像セクション、`__inner` を持たず画面端まで `<img>` 直貼り）
+  - `p-group-list`（左24rem ナビ + 右104rem カード列の2カラム、10社分のカード）
+- セクションタイトル装飾線の共通化（前日までTODOで予告していた「3箇所目で共通化」を実行）
+  - 新規 `c-section-heading` 作成（短い装飾線 1em × 4px + Noto Sans JP Bold 1行）
+  - `p-top-message__title` と `p-philosophy-cards__title` から重複コードを削除
+  - `pages/philosophy.html` 該当 `<h2>` 2箇所に `c-section-heading` クラスを併用、`p-group-list__title` にも併用
+- 現在地ハイライトのJS実装（`js/script.js` に追記）
+  - IntersectionObserver で全カードを観測、`rootMargin: -40% 0px -40% 0px`（画面中央20%帯）で発火
+  - ナビクリック時は `is-current` をジャンプ適用 + `isAutoScrolling` フラグで Observer 発火を抑制、`scrollend` で通常モード復帰
+- 左ナビを `position: sticky; top: 8rem;` でセクション内のみ画面追従させる
+- スムーズスクロール対応: `html { scroll-behavior: smooth; }`（`_base.scss`）、各カードに `scroll-margin-top: 8rem` で固定ヘッダー隠れ対策
+- 現在地マーカー（緑線）に `transform: scaleX(0→1)` + `transform-origin: left center` で「左→右に展開してフェードイン」アニメーション（`::before` は常時生成し transform で制御）
+- id 重複（全カードが id="able"）を一意なスラッグ（able-parking, able-corporate-service, ...）に修正
+- `<img>` の `alt` 属性を全カード一律「エイブル」だったのを各社名に修正
+- カードの `<sup>&reg;</sup>` を全社一括削除（誤って付けていたため）
+
+### 決定事項
+
+- 装飾線つきタイトルは `c-section-heading`（component層）として共通化する。既存の `c-section-title`（border-top 4px + 英字+日本字の2段）とは別ブロックとして並行運用
+- `__title` クラス自体はHTMLに残し（BEM的に「このブロックのタイトル要素」を示す名前として温存／将来の位置調整等の拡張ポイント）、SCSS側は空になるためブロックごと削除する
+- `p-group-list` は inner 128rem を「左ナビ24rem + 右カード列104rem」の2カラムに分割
+- ナビの現在地マーカー（緑線）は inner の外側まで伸びる短い線とし、`::before` を常に存在させて `transform: scaleX` でアニメーション制御する（is-current 時の生成/破棄では transition が効かないため）
+- カードは白背景（`$color-text-white`）、padding 12rem 8rem、カード間 gap 8rem
+- カード上端の短い黒装飾線は `::before` の `position: absolute; top: 0; left: 0;` で padding の外側（カード境界上端）に固定
+- カード内の `<dl>` は `<div class="__detail-row">` で `<dt>` `<dd>` をラップして flex 横並びにする（HTML仕様上、`dl > div > dt+dd` は許容）
+- 現在地検出は IntersectionObserver の `rootMargin: -40% 0px -40% 0px`（画面中央20%帯）方式
+- ナビクリック中の途中通過カードでの誤発火は、`isAutoScrolling` フラグで Observer を一時停止 + `scrollend` イベントで復帰する方式で抑制
+- 全ページ共通の `html { scroll-behavior: smooth; }` を採用。アンカー着地点は要素側の `scroll-margin-top` で個別調整する流儀にする
+- ロゴ画像の `src` は手動差し替え運用とし、HTML上は空のまま出力
+- ロゴ無しの社（エイブル引越サービス / パーソナルエステートラボ）は `<img>` 要素自体を省略
+
+### 触ったファイル
+
+- `pages/group.html`（新規作成、`<main>` 全実装）
+- `index.html`（グループ企業リンク2箇所を設定）
+- `pages/philosophy.html`（グループ企業リンク2箇所を設定、`c-section-heading` クラス追加2箇所）
+- `scss/foundation/_base.scss`（`html` に `scroll-behavior: smooth`）
+- `scss/object/component/_section-heading.scss`（新規）
+- `scss/object/project/_top-message.scss`（`&__title` ブロック削除、c-section-headingへ移譲）
+- `scss/object/project/_philosophy-cards.scss`（同上）
+- `scss/object/project/_group-lead.scss`（新規）
+- `scss/object/project/_group-visual.scss`（新規）
+- `scss/object/project/_group-list.scss`（新規）
+- `scss/style.scss`（`@use` 4件追加: section-heading / group-lead / group-visual / group-list）
+- `js/script.js`（IntersectionObserver + scrollend + ナビクリックハンドラを追記）
+- `css/style.css`（Live Sass Compiler で自動生成）
+- `docs/TODO.md`、`docs/WORKLOG.md`（更新）
+
+### 未解決
+
+- `_group-list.scss` / `_group-lead.scss` 内の `// 暫定` 値を Figma 実測で確定する作業が残る
+- ロゴ画像 `src=""` のまま（10社分、ユーザーが手動で差し替え予定）
+- ナビ項目 / カードの `:hover` 状態未実装（デザイン指定があれば追加）
+- `scrollend` イベントは Safari 18.2+ など新しい環境のみ対応。古いブラウザ向けに setTimeout フォールバックを足すかは保留
+- レスポンシブ未対応（持ち越し）
+- PAGE TOP 未実装（持ち越し）
+
+---
+
 ## 2026-05-22
 
 ### やったこと

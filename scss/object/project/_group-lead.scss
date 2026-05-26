@@ -1,0 +1,37 @@
+@use "../../foundation/variables" as *;
+
+.p-group-lead {
+  padding: 6rem 0 9rem; // 暫定（下 9rem = p-group-visual との間隔）
+  text-align: center;
+
+  &__inner {
+    max-width: 128rem;
+    margin: 0 auto;
+  }
+
+  &__heading {
+    font-family: $font-ja;
+    font-weight: 700;
+    font-size: 3.8rem; // 暫定
+    line-height: 1.8;
+    color: $color-key;
+
+    // 装飾線（フォントサイズ連動: 1em × 4px）。p-top-message と同じ流儀
+    &::after {
+      content: "";
+      display: block;
+      width: 1em;
+      height: 0.4rem;
+      background: $color-key;
+      margin: 3.4rem auto 0; // 暫定
+    }
+  }
+
+  &__text {
+    margin-top: 3.4rem; // 暫定
+    font-family: $font-ja;
+    font-weight: 400;
+    font-size: 1.8rem;
+    line-height: 2;
+  }
+}
