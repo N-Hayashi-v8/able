@@ -1,5 +1,7 @@
 # WORKLOG
 
+<!-- markdownlint-disable MD024 -->
+
 > これまでの作業内容を日付ごとに記録するファイル。**新しい日付を一番上に追記する**。過去のエントリは編集しない。
 
 ---
@@ -30,6 +32,14 @@
 - id 重複（全カードが id="able"）を一意なスラッグ（able-parking, able-corporate-service, ...）に修正
 - `<img>` の `alt` 属性を全カード一律「エイブル」だったのを各社名に修正
 - カードの `<sup>&reg;</sup>` を全社一括削除（誤って付けていたため）
+- `pages/sustainability.html` 新規作成（philosophy.html / group.html と同じ流儀: head / header / footer 流用、`<title>` と各種ナビリンクを差し替え）
+- サイト内「サステナビリティ」リンク（`href="#"`のまま）を6箇所すべて設定
+  - `index.html` ヘッダーナビ / フッターナビ → `pages/sustainability.html`
+  - `pages/philosophy.html` / `pages/group.html` のヘッダーナビ / フッターナビ → `sustainability.html`
+- `sustainability.html` の `<main>` 冒頭を実装
+  - `p-page-title`（既存流用、英字 SUSTAINABILITY / 日本字「サステナビリティ」、breadcrumb 末尾も差替）
+  - MV 画像セクション（`<section><img></section>` のクラス未付与の暫定状態）
+- WORKLOG.md のリンター警告解消（ファイル冒頭に MD024 抑制ディレクティブ追加、2026-05-15 エントリの H3 直下に空行追加）
 
 ### 決定事項
 
@@ -59,9 +69,12 @@
 - `scss/object/project/_group-visual.scss`（新規）
 - `scss/object/project/_group-list.scss`（新規）
 - `scss/style.scss`（`@use` 4件追加: section-heading / group-lead / group-visual / group-list）
-- `js/script.js`（IntersectionObserver + scrollend + ナビクリックハンドラを追記）
+- `js/script.js`(IntersectionObserver + scrollend + ナビクリックハンドラを追記）
+- `pages/sustainability.html`（新規作成、p-page-title + MV 画像セクションまで実装）
+- `index.html`（サステナビリティリンク2箇所を設定）
+- `pages/group.html`（サステナビリティリンク2箇所を設定）
 - `css/style.css`（Live Sass Compiler で自動生成）
-- `docs/TODO.md`、`docs/WORKLOG.md`（更新）
+- `docs/TODO.md`、`docs/WORKLOG.md`（更新。WORKLOG.md は併せてリンター警告解消）
 
 ### 未解決
 
@@ -71,6 +84,8 @@
 - `scrollend` イベントは Safari 18.2+ など新しい環境のみ対応。古いブラウザ向けに setTimeout フォールバックを足すかは保留
 - レスポンシブ未対応（持ち越し）
 - PAGE TOP 未実装（持ち越し）
+- `pages/sustainability.html` の MV セクションがクラス未付与の暫定状態（次回着手時に命名 + SCSS 化）
+- `pages/sustainability.html` の MV 以降のセクション未実装
 
 ---
 
@@ -309,6 +324,7 @@
 ## 2026-05-15
 
 ### やったこと
+
 - プロジェクト初期化
 - FLOCSS準拠のフォルダ構成を作成（`scss/foundation` / `scss/layout` / `scss/object`）
 - `index.html` の雛形作成（destyle.css と style.css を読み込み）
@@ -321,6 +337,7 @@
 - GitHub に Privateリポジトリ `able` を作成し、`origin main` へ push 完了
 
 ### 決定事項
+
 - CSS方針: **SCSS + FLOCSS**（BEM命名）
 - 画像フォルダ名: **`img/`**
 - コンパイラ: **Live Sass Compiler**（VSCode拡張）
@@ -329,6 +346,7 @@
 - `.claude/settings.local.json` は git管理しない（マシン固有設定のため）
 
 ### 触ったファイル
+
 - `index.html`（新規）
 - `scss/style.scss`（新規）
 - `scss/foundation/_variables.scss`, `_mixin.scss`, `_base.scss`（新規）
@@ -339,6 +357,7 @@
 - `.gitignore`（新規）
 
 ### 未解決
+
 - レスポンシブの基準（PC/SPどちらから書くか）
 - 共通ブレークポイント値の確定（`_variables.scss` に未定義）
 

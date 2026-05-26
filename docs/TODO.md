@@ -7,6 +7,8 @@
 
 ## 翌日（次回作業日）にやること
 
+- [ ] `pages/sustainability.html` の MV セクションのクラス命名 + SCSS 化
+- [ ] `pages/sustainability.html` の MV 以降のセクション実装
 - [ ] `pages/group.html` のロゴ画像 `src=""` を10社分実画像に差し替え（手動）
 - [ ] `_group-list.scss` / `_group-lead.scss` の `// 暫定` 値を Figma 実測で確定
 - [ ] `p-group-list` のナビ項目 / カードの `:hover` 状態の実装（デザイン指定があれば）
