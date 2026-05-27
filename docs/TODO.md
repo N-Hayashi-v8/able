@@ -1,14 +1,15 @@
 # TODO
 
-> 最終更新: 2026-05-26（本日の作業終了時点）
+> 最終更新: 2026-05-27（本日の作業終了時点）
 > 翌日の作業を整理するファイル。完了したものは WORKLOG.md に移して本ファイルからは削除する。
 
 ---
 
 ## 翌日（次回作業日）にやること
 
-- [ ] `pages/sustainability.html` の MV セクションのクラス命名 + SCSS 化
-- [ ] `pages/sustainability.html` の MV 以降のセクション実装
+- [ ] `pages/sustainability.html` の全セクション SCSS 実装（`p-sus-mv` / `p-sus-sdgs` / `p-sus-action` / `p-sus-action-group` / `p-sus-bnr`）
+- [ ] `pages/sustainability.html` の Diversity / Social 本文テキストを Figma 原文に差し替え（現状は判読困難箇所を文意で補完）
+- [ ] `__item-source` のリンク化方針確認（出典名 + ↗アイコンの場合 `<a>` でラップ）
 - [ ] `pages/group.html` のロゴ画像 `src=""` を10社分実画像に差し替え（手動）
 - [ ] `_group-list.scss` / `_group-lead.scss` の `// 暫定` 値を Figma 実測で確定
 - [ ] `p-group-list` のナビ項目 / カードの `:hover` 状態の実装（デザイン指定があれば）
@@ -28,7 +29,6 @@
 - [ ] レスポンシブ対応（PC → SP もしくは SP → PC、方針未決）
 - [ ] PAGE TOP（共通フローティングUI）の実装。`<body>` 直下 + `position: fixed` で全ページ共通配置を想定
 - [ ] 自ページからのナビリンクの扱い。現在地は無リンク化 + `aria-current="page"` 運用に変えるか要検討
-- [ ] サステナビリティ等、他の下層ページの実装
 - [ ] `scrollend` イベント未対応ブラウザへの setTimeout フォールバックの要否判断（現状は Chrome 114+ / Firefox 109+ / Safari 18.2+ のみ動作）
 
 ## 保留・要確認

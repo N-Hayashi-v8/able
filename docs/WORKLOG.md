@@ -6,6 +6,56 @@
 
 ---
 
+## 2026-05-27
+
+### やったこと
+
+- `pages/sustainability.html` の `<main>` 全セクションの HTML 骨組みを実装（MV / SDGs / 取り組み3群 / CSR バナーの計5セクション）
+- 新規ブロック命名（プレフィックス `p-sus-`）
+  - `p-sus-mv`（全幅 MV 画像、`__inner` 持たず）
+  - `p-sus-sdgs`（見出し + リード + 概念図 + 下段3カラム）
+    - 下段3カラムは `__cards` > `__card` > (`__card-en` / `__card-title` / `__icons` > `__icon`) 構造
+  - `p-sus-action`（左ナビ sticky + 右コンテンツ、`p-group-list` の流儀を踏襲）
+    - `__nav` / `__nav-list` / `__nav-item` / `__nav-en` / `__nav-title`
+    - `__body` の中に各テーマブロックを並べる
+  - `p-sus-action-group`（sec2 の Innovation / Diversity / Social の各テーマ塊を独立ブロックに切り出し）
+    - `__heading`（`c-section-heading` 併用） / `__en` / `__title`
+    - `__visual` > `__photo` + `__sdgs`（写真上に SDGs アイコン重ね）
+    - `__action`（ACTION 番号 + 説明）と `__item`（個別アイテム）は HTML 上フラット並列
+    - `__action-num` > `__action-label`(ACTION) + `__action-number`(01/02)、`__action-desc`
+    - `__item` > `__item-img` + `__item-body` > `__item-title` / `__item-text` / `__item-source`
+  - `p-sus-bnr`（CSR リンクバナー、画像1枚を `<a>` でラップ）
+- セクションタイトル装飾線は既存 `c-section-heading` を sec1 見出し / sec2 各テーマ見出しの計4箇所で再利用
+- sec2 左ナビのアンカーリンク用に各テーマブロックへ `id="innovation"` / `id="diversity"` / `id="social"` を付与（次回 IntersectionObserver で現在地ハイライト用にも使う想定）
+- Innovation セクションの本文は Figma から正確に書き起こし、Diversity / Social は判読困難箇所を文意で補完（次回原文差し替え予定）
+- 全 `<img>` の `src` を実画像ファイルに当て込み（ユーザー作業）
+  - SDGs アイコンファイル名を `sdgs/NN.png`（2桁ゼロパディング）形式に整理
+
+### 決定事項
+
+- サステナビリティ下層ページ用のブロックプレフィックスは `p-sus-` とする（既存トップページの `p-sustainability` との衝突回避 + フルプレフィックスより短く書ける）
+- sec2 の各テーマ塊（Innovation / Diversity / Social）は `p-sus-action-group` として独立ブロックに切り出す。`p-sus-action` 内部に閉じ込めると階層が4段超になるため
+- ACTION ブロック（番号+説明）と詳細アイテム（`__item`）は HTML 上フラット並列にする。入れ子にしないことで、ISMS 認証取得のような「ACTION 番号を持たない単独アイテム」を素直に書ける + 階層を浅く保てる
+- sec2 のレイアウト方針は `p-group-list` の流儀を全面踏襲（左ナビ sticky + 右コンテンツ + 現在地ハイライト + スムーズスクロール + `scroll-margin-top` で固定ヘッダー隠れ対策）
+- SDGs アイコンのファイル名は `sdgs/NN.png` の2桁ゼロパディング形式に統一
+
+### 触ったファイル
+
+- `pages/sustainability.html`（`<main>` の MV〜CSR バナーまで全セクション実装）
+- `img/sustainability/sdgs/` 配下のアイコンファイル名整理（ユーザー作業）
+- `docs/TODO.md`、`docs/WORKLOG.md`（更新）
+
+### 未解決
+
+- 全セクションの SCSS 未実装（次回着手）
+- Diversity / Social の本文は判読困難箇所を文意で補完してある（次回 Figma 原文に差し替え予定）
+- `__item-source` のリンク化方針未確定（出典名の右に ↗ アイコンが付くデザインなら `<a>` ラップに変更）
+- sec2 の左ナビ現在地ハイライト用 JS は未実装（`p-group-list` の流儀踏襲予定）
+- レスポンシブ未対応（持ち越し）
+- PAGE TOP 未実装（持ち越し）
+
+---
+
 ## 2026-05-26
 
 ### やったこと
