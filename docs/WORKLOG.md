@@ -6,6 +6,90 @@
 
 ---
 
+## 2026-05-29
+
+### やったこと
+
+- `pages/sustainability.html` の全セクション SCSS 実装（5ファイル新規）
+  - `_sus-mv.scss`（全幅MV画像）
+  - `_sus-sdgs.scss`（見出し緑センター + リード + 概念図 + 3カラムカード + SDGsアイコン grid）
+  - `_sus-action.scss`（左 sticky ナビ24rem + 右コンテンツ104rem、`p-group-list` 流儀踏襲）
+  - `_sus-action-group.scss`（見出し / visual / action / item の構造、`c-section-heading` + 英字4rem+日本字2rem の2段）
+  - `_sus-bnr.scss`（CSRバナー、Figma実値で `max-width: 80rem` / `padding-top: 8.4rem`）
+- SDGsアイコンのレイアウト調整
+  - `__icons` を `display: grid` 化、デフォルト 3カラム
+  - Innovation のみ `__icons--col-4` modifier で 4カラム化（HTMLにクラス追加）
+- sec2 ビジュアルの SDGsアイコン重ね位置
+  - 当初 `bottom: -2rem; right: 4rem;`（右下）で実装 → 写真中央下にめり込む形（`left: 50%; transform: translateX(-50%)`）に変更
+- アイテム画像幅: 24rem → 10rem に変更
+- サステナビリティ section1 見出しは `c-section-heading`（左揃え黒）と仕様が違う（緑センター）ため、HTMLから `c-section-heading` クラスを除去し `p-sus-sdgs__heading` 独自スタイルに切り出し
+- JS の現在地ハイライトを汎用関数 `setupCurrentNav({ rootSelector, cardSelector, navItemSelector })` に切り出し（`p-group-list` 専用 → 多ページ対応）
+  - `p-group-list` と `p-sus-action` の両方で再利用
+- 会社案内ページ `pages/company.html` を新規作成
+  - 雛形は `sustainability.html` 踏襲（head / header / footer / `p-page-title`）
+  - `<title>`「会社案内｜エイブル株式会社-模写」、英字 `COMPANY`、breadcrumb 末尾「会社案内」
+- サイト内「会社案内」リンク（href="#"のまま）を5ページ8箇所すべて設定
+  - `index.html` ヘッダー/フッター → `pages/company.html`
+  - `pages/philosophy.html` / `pages/group.html` / `pages/sustainability.html` のヘッダー/フッター → `company.html`
+  - `pages/company.html` 自身のヘッダー/フッター → `company.html`
+- 会社案内ページ `<main>` 本体の HTML骨組み + SCSS 実装（3セクション）
+  - `p-company-overview`（会社概要）: `dl > div.__row > dt+dd` 構造、5行（商号 / 設立 / 役員 / グループ事業内容 / 所在地+map）
+    - 役員は `__officer-role` + `__officer-name` の2カラム
+    - 事業内容は縦並びリスト
+    - 所在地に Google Maps iframe 埋め込み（住所「東京都港区元赤坂1-5-5」）
+  - `p-company-group`（グループ会社一覧）: 2カラム × 5行 grid、10社カード
+    - 各カード上端に短い装飾線（4rem × 0.4rem 黒、`::before`）
+    - 会社名 + ↗ アイコン（緑、`$color-key`）
+    - dl で 事業内容 / 所在地
+  - `p-company-notice`（電子公告）: 見出し（`c-section-heading`、inner 左端）+ ボタン（中央寄せ）
+    - ボタンは `c-button` 流用、Figma実値で `width: 57.6rem`（577→576px丸め）、`justify-content: center` でテキスト中央揃え
+- 会社概要 / グループ会社一覧の本文は「左余白24rem + コンテンツ幅104rem」のインデント運用を採用（philosophy / sustainability section1 と同じ流儀）
+
+### 決定事項
+
+- サステナビリティ section1 の見出し（緑センター + 下装飾線）は `c-section-heading`（左揃え黒 + 上装飾線）とは別仕様。`p-sus-sdgs__heading` で独自に書き、`c-section-heading` クラスはHTMLから除外
+- SDGsアイコン配置は `display: grid` + modifier（`--col-3` / `--col-4`）で扱う。`:nth-child` 依存ではなく BEM modifier で明示
+- SDGsアイコンを写真に重ねる位置は「写真の横中央・下端から少し下に飛び出す」配置（`left: 50%; transform: translateX(-50%); bottom: -2rem;`）
+- 現在地ハイライトJSは汎用関数 `setupCurrentNav()` 化。新しいページで同じ仕組みを使いたいときは引数で対象セレクタを渡すだけ
+- 会社案内ページのコンテンツ部は「inner 左端の見出し + 24rem インデントしたコンテンツ（幅104rem）」レイアウト
+- 会社案内 section3 のボタン位置は Figma だと中途半端な位置だったため、見出し左 + ボタン中央 のレイアウトに変更。ボタン内のテキストも `justify-content: center` で中央揃え
+- 会社案内 section2 のカード装飾線は `p-group-list` と同じ「短い黒線（`::before`）」流儀を踏襲、サイズだけ調整（4rem × 0.4rem）
+- 会社案内 section2 の ↗ アイコンは全カードに付与（個別精査は後日）
+- Google Maps 埋め込みは `maps.google.com/maps?q=住所&output=embed` 形式（API キー不要の暫定）、本番は Embed API キー取得が推奨
+- Figma実値の丸めは引き続き「4の倍数優先・近い方を選ぶ」運用。今回確定: bnr 800px=80rem / 1042px=104rem / 240px=24rem / 577px=576px=57.6rem / 84px=8.4rem
+
+### 触ったファイル
+
+- `pages/sustainability.html`（`p-sus-sdgs__heading` から `c-section-heading` 除去、`__icons--col-4` modifier 追加、会社案内リンク差し替え）
+- `pages/company.html`（新規作成、head/header/footer/page-title/`<main>` 3セクション + Google Maps iframe）
+- `pages/philosophy.html`、`pages/group.html`（会社案内リンク差し替え）
+- `index.html`（会社案内リンク2箇所差し替え）
+- `scss/object/project/_sus-mv.scss`（新規）
+- `scss/object/project/_sus-sdgs.scss`（新規）
+- `scss/object/project/_sus-action.scss`（新規）
+- `scss/object/project/_sus-action-group.scss`（新規）
+- `scss/object/project/_sus-bnr.scss`（新規）
+- `scss/object/project/_company-overview.scss`（新規）
+- `scss/object/project/_company-group.scss`（新規）
+- `scss/object/project/_company-notice.scss`（新規）
+- `scss/style.scss`（`@use` 8件追加: sus-mv / sus-sdgs / sus-action / sus-action-group / sus-bnr / company-overview / company-group / company-notice）
+- `js/script.js`（`setupCurrentNav()` 汎用関数化、`p-group-list` と `p-sus-action` の両方で呼び出し）
+- `css/style.css`（Live Sass Compiler で自動生成）
+- `docs/TODO.md`、`docs/WORKLOG.md`（更新）
+
+### 未解決
+
+- 各SCSSファイルの `// 暫定` 値多数（特に `_sus-sdgs.scss` / `_sus-action.scss` / `_sus-action-group.scss` / `_company-overview.scss` / `_company-group.scss` / `_company-notice.scss` の上下padding・gap・フォントサイズ）。Figma 実測で順次確定する作業が残る
+- サステナビリティ Diversity / Social の本文は判読困難箇所を文意で補完した状態のまま（持ち越し）
+- `__item-source` のリンク化方針未確定（持ち越し）
+- 会社案内 section2 の ↗ アイコンは全カードに付与済み。ロゴ有無等の規則がデザイン上ある場合は要精査
+- 会社案内 section1 の Google Maps は `?q=&output=embed` 形式の暫定。本番は Embed API キー取得が推奨
+- `pages/group.html` のロゴ画像 `src=""` のまま（10社分、ユーザーが手動で差し替え予定）
+- レスポンシブ未対応（持ち越し）
+- PAGE TOP 未実装（持ち越し）
+
+---
+
 ## 2026-05-27
 
 ### やったこと

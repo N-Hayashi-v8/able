@@ -1,0 +1,91 @@
+@use "../../foundation/variables" as *;
+
+.p-company-overview {
+  padding: 12rem 0; // 暫定
+
+  &__inner {
+    max-width: 128rem;
+    margin: 0 auto;
+  }
+
+  // ===== 見出し（c-section-heading 併用） =====
+  &__heading {
+    // c-section-heading が「線上+太字3.2rem」を提供
+  }
+
+  // ===== リスト =====
+  &__list {
+    margin-top: 6rem; // 暫定
+    margin-left: 24rem; // Figma 左余白 240px
+    width: 104rem; // Figma コンテンツ幅 1040px
+    border-top: 1px solid $color-border;
+  }
+
+  &__row {
+    display: flex;
+    align-items: flex-start;
+    padding: 4rem 0; // 暫定
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__label {
+    width: 24rem; // 暫定
+    flex-shrink: 0;
+    padding: 0 4rem; // 暫定（左右）
+    border-right: 1px solid $color-border;
+    font-family: $font-ja;
+    font-weight: 700;
+    font-size: 1.6rem; // 暫定
+    line-height: 1.6;
+  }
+
+  &__value {
+    flex: 1;
+    padding-left: 4rem; // 暫定
+    font-family: $font-ja;
+    font-weight: 400;
+    font-size: 1.4rem; // 暫定
+    line-height: 1.8;
+  }
+
+  // ===== 役員リスト（ロール+名前の2カラム） =====
+  &__officers {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem; // 暫定
+  }
+
+  &__officer {
+    display: flex;
+    align-items: baseline;
+    gap: 2.4rem; // 暫定
+  }
+
+  &__officer-role {
+    width: 14rem; // 暫定
+    flex-shrink: 0;
+  }
+
+  // ===== 事業内容リスト =====
+  &__businesses {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem; // 暫定
+  }
+
+  // ===== 所在地 =====
+  &__address {
+    // 通常の段落
+  }
+
+  &__map {
+    margin-top: 2.4rem; // 暫定
+    max-width: 40rem; // 暫定（スクショ準拠の小さめサイズ）
+
+    iframe {
+      width: 100%;
+      height: 24rem; // 暫定
+      display: block;
+    }
+  }
+}

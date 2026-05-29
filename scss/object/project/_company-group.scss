@@ -1,0 +1,94 @@
+@use "../../foundation/variables" as *;
+
+.p-company-group {
+  padding: 12rem 0; // 暫定
+
+  &__inner {
+    max-width: 128rem;
+    margin: 0 auto;
+  }
+
+  // ===== 見出し（c-section-heading 併用） =====
+  &__heading {
+    // c-section-heading が「線上+太字3.2rem」を提供
+  }
+
+  // ===== カード群（2カラム × 5行） =====
+  &__cards {
+    margin-top: 6rem; // 暫定
+    margin-left: 24rem; // section1 と同じインデント
+    width: 104rem; // section1 と同じコンテンツ幅
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 4rem; // 暫定
+    row-gap: 6rem; // 暫定
+  }
+
+  &__card {
+    position: relative;
+    padding-top: 3.2rem; // 暫定（装飾線とコンテンツの間）
+    padding-left: 2.4rem; // 暫定
+
+    // 上端の短い黒装飾線（カード境界の左上に固定）
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4rem; // 暫定
+      height: 0.4rem;
+      background: $color-text;
+    }
+  }
+
+  // ===== 会社名 + ↗ =====
+  &__card-name {
+    font-family: $font-ja;
+    font-weight: 700;
+    font-size: 1.8rem; // 暫定
+    line-height: 1.5;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  &__card-icon {
+    display: inline-block;
+    margin-left: 0.4rem;
+    color: $color-key; // 緑
+    font-weight: 400;
+  }
+
+  // ===== カード詳細 =====
+  &__card-detail {
+    margin-top: 2rem; // 暫定
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem; // 暫定
+  }
+
+  &__card-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem; // 暫定
+  }
+
+  &__card-label {
+    width: 6rem; // 暫定
+    flex-shrink: 0;
+    font-family: $font-ja;
+    font-weight: 700;
+    font-size: 1.3rem; // 暫定
+    line-height: 1.6;
+  }
+
+  &__card-value {
+    flex: 1;
+    font-family: $font-ja;
+    font-weight: 400;
+    font-size: 1.3rem; // 暫定
+    line-height: 1.8;
+  }
+}

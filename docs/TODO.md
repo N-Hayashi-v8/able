@@ -1,18 +1,20 @@
 # TODO
 
-> 最終更新: 2026-05-27（本日の作業終了時点）
+> 最終更新: 2026-05-29（本日の作業終了時点）
 > 翌日の作業を整理するファイル。完了したものは WORKLOG.md に移して本ファイルからは削除する。
 
 ---
 
 ## 翌日（次回作業日）にやること
 
-- [ ] `pages/sustainability.html` の全セクション SCSS 実装（`p-sus-mv` / `p-sus-sdgs` / `p-sus-action` / `p-sus-action-group` / `p-sus-bnr`）
 - [ ] `pages/sustainability.html` の Diversity / Social 本文テキストを Figma 原文に差し替え（現状は判読困難箇所を文意で補完）
 - [ ] `__item-source` のリンク化方針確認（出典名 + ↗アイコンの場合 `<a>` でラップ）
+- [ ] `pages/company.html` の section2 ↗ アイコンの規則精査（ロゴ有無等で表示/非表示の出し分けが必要なら対応）
+- [ ] `pages/company.html` の Google Maps を Embed API キー方式に差し替え（任意）
+- [ ] 各 `_sus-*.scss` / `_company-*.scss` の `// 暫定` 値を Figma 実測で確定
 - [ ] `pages/group.html` のロゴ画像 `src=""` を10社分実画像に差し替え（手動）
 - [ ] `_group-list.scss` / `_group-lead.scss` の `// 暫定` 値を Figma 実測で確定
-- [ ] `p-group-list` のナビ項目 / カードの `:hover` 状態の実装（デザイン指定があれば）
+- [ ] `p-group-list` / `p-sus-action` / `p-company-group` のナビ項目 / カードの `:hover` 状態の実装（デザイン指定があれば）
 
 ## 近いうちにやること（順不同）
 

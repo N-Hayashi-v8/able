@@ -1,0 +1,22 @@
+@use "../../foundation/variables" as *;
+
+.p-company-notice {
+  padding: 12rem 0; // 暫定
+
+  &__inner {
+    max-width: 128rem;
+    margin: 0 auto;
+  }
+
+  // ===== 見出し（c-section-heading 併用） =====
+  &__heading {
+    // c-section-heading が「線上+太字3.2rem」を提供
+  }
+
+  // ===== ボタン（c-button 流用、中央寄せ） =====
+  &__button {
+    margin: 6rem auto 0; // 上6rem暫定 / 左右auto で中央寄せ
+    width: 57.6rem; // Figma width:577px（576に丸め）
+    justify-content: center; // c-button の flex 内でテキストを横中央へ
+  }
+}
