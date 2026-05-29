@@ -1,10 +1,15 @@
 // ハンバーガーメニュー等のJSをここに
 
-// グループ会社一覧ページ: スクロール位置に応じてナビの現在地を切り替える
-// 該当ページ以外では p-group-list が存在しないので何もしない（全ページ共通読込）
-document.addEventListener('DOMContentLoaded', () => {
-  const cards = document.querySelectorAll('.p-group-list__card');
-  const navItems = document.querySelectorAll('.p-group-list__nav-item');
+// スクロール位置に応じて左ナビの現在地を切り替える汎用関数
+// rootSelector: 機能を仕掛けるセクションのセレクタ（対象ページのみ動作させる用）
+// cardSelector: スクロール検出対象のカード/セクション群
+// navItemSelector: 切り替え対象のナビ項目（href="#id" を持つ <a> を含むこと）
+function setupCurrentNav({ rootSelector, cardSelector, navItemSelector }) {
+  const root = document.querySelector(rootSelector);
+  if (!root) return;
+
+  const cards = root.querySelectorAll(cardSelector);
+  const navItems = root.querySelectorAll(navItemSelector);
   if (cards.length === 0 || navItems.length === 0) return;
 
   // ナビクリックによる自動スクロール中は Observer の自動切替を停止する
@@ -15,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const link = item.querySelector('a');
     if (!link) return;
     link.addEventListener('click', () => {
-      // クリック対象に即時 is-current をジャンプ適用
       navItems.forEach((i) => i.classList.toggle('is-current', i === item));
       isAutoScrolling = true;
     });
@@ -27,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const observer = new IntersectionObserver((entries) => {
-    if (isAutoScrolling) return; // 自動スクロール中は途中通過を無視
+    if (isAutoScrolling) return;
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       const id = entry.target.id;
@@ -42,4 +46,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   cards.forEach((card) => observer.observe(card));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // グループ企業ページ
+  setupCurrentNav({
+    rootSelector: '.p-group-list',
+    cardSelector: '.p-group-list__card',
+    navItemSelector: '.p-group-list__nav-item',
+  });
+
+  // サステナビリティページ
+  setupCurrentNav({
+    rootSelector: '.p-sus-action',
+    cardSelector: '.p-sus-action-group',
+    navItemSelector: '.p-sus-action__nav-item',
+  });
 });

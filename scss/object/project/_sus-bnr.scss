@@ -1,0 +1,18 @@
+@use "../../foundation/variables" as *;
+
+.p-sus-bnr {
+  padding-top: 8.4rem; // Figma top:84px
+  padding-bottom: 12rem; // 暫定（Figma未指定）
+
+  &__link {
+    display: block;
+    max-width: 80rem; // Figma width:800px
+    margin: 0 auto; // Figma left:560px (= デザイン幅1920px の中央)
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+}

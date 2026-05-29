@@ -1,0 +1,108 @@
+@use "../../foundation/variables" as *;
+
+.p-sus-sdgs {
+  padding: 12rem 0; // 暫定
+
+  &__inner {
+    max-width: 128rem;
+    margin: 0 auto;
+    padding: 0 4rem; // 暫定（左右余白）
+  }
+
+  // ===== 見出し =====
+  &__heading {
+    text-align: center;
+    font-family: $font-ja;
+    font-weight: 700;
+    font-size: 3.2rem; // 暫定
+    line-height: 1.5;
+    color: $color-key;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 4rem; // 暫定
+      height: 0.2rem;
+      background: $color-key;
+      margin: 1.6rem auto 0; // 暫定
+    }
+  }
+
+  // ===== リード =====
+  &__lead {
+    margin-top: 4rem; // 暫定
+    text-align: center;
+    font-family: $font-ja;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2;
+  }
+
+  // ===== 概念図 =====
+  &__diagram {
+    margin-top: 6rem; // 暫定
+    text-align: center;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  // ===== 下段3カラム =====
+  &__cards {
+    margin-top: 6rem; // 暫定
+    display: flex;
+    justify-content: center;
+    gap: 8rem; // 暫定（カラム間）
+  }
+
+  &__card {
+    flex: 1;
+    max-width: 28rem; // 暫定（1カード最大幅）
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__card-en {
+    font-family: $font-en;
+    font-weight: 600;
+    font-size: 1.6rem; // 暫定
+    line-height: 1.5;
+    color: $color-key;
+    text-align: center;
+  }
+
+  &__card-title {
+    margin-top: 1.2rem; // 暫定
+    font-family: $font-ja;
+    font-weight: 700;
+    font-size: 1.6rem; // 暫定
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  &__icons {
+    margin-top: 2.4rem; // 暫定
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    gap: 0.4rem; // 暫定
+
+    &--col-4 {
+      grid-template-columns: repeat(4, auto);
+    }
+  }
+
+  &__icon {
+    width: 5.6rem; // 暫定
+    height: auto;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,86 @@
+@use "../../foundation/variables" as *;
+
+.p-sus-action {
+  padding: 12rem 0; // 暫定
+
+  &__inner {
+    max-width: 128rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  // ===== 左カラム: ナビ =====
+  &__nav {
+    width: 24rem;
+    flex-shrink: 0;
+    position: sticky;
+    top: 8rem;
+    padding-top: 8rem; // 固定ヘッダー(l-header)の高さ分オフセット
+  }
+
+  &__nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem; // 暫定
+  }
+
+  &__nav-item {
+    position: relative;
+    color: $color-border;
+
+    // 現在地マーカー（is-current 時に左→右へ展開してフェードイン）
+    &::before {
+      content: "";
+      position: absolute;
+      left: -4rem;
+      top: 0.75em; // 暫定
+      width: 2rem;
+      height: 0.2rem;
+      background: $color-key;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.4s ease;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem; // 暫定
+    }
+
+    &.is-current {
+      color: $color-text;
+
+      &::before {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  &__nav-en {
+    font-family: $font-en;
+    font-weight: 600;
+    font-size: 1.4rem; // 暫定
+    line-height: 1.5;
+  }
+
+  &__nav-title {
+    font-family: $font-ja;
+    font-weight: 400;
+    font-size: 1.2rem; // 暫定
+    line-height: 1.5;
+  }
+
+  // ===== 右カラム: コンテンツ =====
+  &__body {
+    width: 104rem;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12rem; // 暫定（テーマグループ間）
+  }
+}

@@ -1,0 +1,149 @@
+@use "../../foundation/variables" as *;
+
+.p-sus-action-group {
+  scroll-margin-top: 8rem; // ナビからのアンカージャンプ着地時に固定ヘッダー(l-header)に隠れないためのオフセット
+
+  // ===== 見出し（c-section-heading 併用、英字+日本字の2段） =====
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem; // 暫定
+  }
+
+  &__en {
+    font-family: $font-en;
+    font-weight: 700;
+    font-size: 4rem; // 暫定
+    line-height: 1.2;
+  }
+
+  &__title {
+    font-family: $font-ja;
+    font-weight: 700;
+    font-size: 2rem; // 暫定
+    line-height: 1.5;
+  }
+
+  // ===== ビジュアル（写真 + SDGsアイコン重ね） =====
+  &__visual {
+    position: relative;
+    margin-top: 4rem; // 暫定
+  }
+
+  &__photo {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  &__sdgs {
+    position: absolute;
+    bottom: -2rem; // 暫定（写真下端から少しはみ出して重ねる）
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.4rem; // 暫定
+    padding: 1.2rem; // 暫定
+    background: $color-text-white;
+
+    li {
+      width: 5.6rem; // 暫定（p-sus-sdgs__icon と同サイズ）
+
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    }
+  }
+
+  // ===== ACTION 番号 + 説明 =====
+  &__action {
+    margin-top: 8rem; // 暫定（ビジュアル直後 or 前itemとの間）
+    display: flex;
+    align-items: center;
+    gap: 4rem; // 暫定
+  }
+
+  &__action-num {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem; // 暫定
+    padding-right: 4rem; // 暫定
+    border-right: 1px solid $color-border;
+  }
+
+  &__action-label {
+    font-family: $font-en;
+    font-weight: 600;
+    font-size: 1.4rem; // 暫定
+    line-height: 1;
+    letter-spacing: 0.05em;
+  }
+
+  &__action-number {
+    font-family: $font-en;
+    font-weight: 700;
+    font-size: 4rem; // 暫定
+    line-height: 1;
+  }
+
+  &__action-desc {
+    flex: 1;
+    font-family: $font-ja;
+    font-weight: 700;
+    font-size: 1.8rem; // 暫定
+    line-height: 1.8;
+  }
+
+  // ===== 個別アイテム =====
+  &__item {
+    margin-top: 4rem; // 暫定（前itemまたはactionとの間）
+    padding-top: 4rem; // 暫定
+    border-top: 1px solid $color-border;
+    display: flex;
+    align-items: flex-start;
+    gap: 4rem; // 暫定
+  }
+
+  &__item-img {
+    width: 10rem; // 暫定
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  &__item-body {
+    flex: 1;
+  }
+
+  &__item-title {
+    font-family: $font-ja;
+    font-weight: 700;
+    font-size: 1.8rem; // 暫定
+    line-height: 1.5;
+  }
+
+  &__item-text {
+    margin-top: 1.6rem; // 暫定
+    font-family: $font-ja;
+    font-weight: 400;
+    font-size: 1.4rem; // 暫定
+    line-height: 1.8;
+  }
+
+  &__item-source {
+    margin-top: 1.6rem; // 暫定
+    font-family: $font-ja;
+    font-weight: 400;
+    font-size: 1.3rem; // 暫定
+    line-height: 1.5;
+    color: $color-text-related;
+  }
+}
