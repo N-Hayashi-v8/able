@@ -1,0 +1,72 @@
+// .c-pagetop（共通 PAGE TOP ボタン）
+// 全ページ共通。<footer> の後ろに置き position: fixed で右下に固定する
+@use "../../foundation/variables" as *;
+
+.c-pagetop {
+  position: fixed;
+  right: 4rem; // 暫定
+  bottom: 4rem; // 暫定（JS がフッター手前で持ち上げる）
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem; // 暫定（アイコン ↔ テキスト）
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $color-text;
+
+  // 最上部では非表示。スクロールで .is-visible が付き、ふわっと出現
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(1rem);
+  transition: opacity 0.4s, visibility 0.4s, transform 0.4s;
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  // 上向き矢印（c-button の線 + barb 流儀を縦向きに）
+  &__icon {
+    position: relative;
+    width: 2rem;
+    height: 2.4rem; // 暫定（矢印の縦長さ）
+
+    // 縦シャフト
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 1px;
+      height: 100%;
+      background-color: currentColor;
+      transform: translateX(-50%);
+    }
+
+    // 上端の barb（先端を支点に回転）
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 0.8rem; // 暫定
+      height: 1px;
+      background-color: currentColor;
+      transform-origin: left top;
+      transform: rotate(45deg);
+    }
+  }
+
+  &__text {
+    font-family: $font-en; // Barlow
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 1.6rem; // = 16px
+    text-align: center;
+    color: $color-text;
+  }
+}

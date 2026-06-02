@@ -27,6 +27,11 @@
   - index・各子ページの「プレスリリースを見る」ボタン → `news.html`
   - `company.html` section3「電子公告はこちら」ボタン → `notice.html`
   - index トップの「グループ／サステナビリティについて詳しく見る」ボタンの `#` 繋ぎ漏れを修正（→ group.html / sustainability.html）
+- PAGE TOP（共通フローティングUI）`c-pagetop` を全9ページに実装
+  - `<footer>` 後ろに `<button class="c-pagetop">`（上向き矢印アイコン＋`PAGE`/`TOP` の2行、Barlow 700 / 16px）
+  - `position: fixed` 右下固定。既定 `opacity:0; visibility:hidden`、`scrollY > 300`（暫定）で `.is-visible` を付けて opacity＋translateY でふわっと出現
+  - JS `setupPageTop()`: 表示トグル＋フッター被り回避（`footer` が画面に入った分＋余白だけ `bottom` を持ち上げ）＋クリックで `scrollTo({top:0, behavior:'smooth'})`
+  - 矢印は `c-button` の線＋barb流儀を縦向きに（擬似要素）
 
 ### 決定事項
 
@@ -36,6 +41,7 @@
 - ポリシー系2ページ（privacy / kasuhara）は見出し付き条項の独立ブロックとして別々に実装。SCSSはほぼ重複だが、3つ目の同型が出たら共通ブロック `p-policy` への一本化を検討（`c-section-heading` で実施した「3箇所目で共通化」と同じ判断軸）
 - 電子公告は会社グループ単位のリスト。見出しは共通 `c-section-heading`、リンク色は用途どおり `$color-link-pdf`、各行は期＋リンクで「行全体ではなくリンク部分のみ `<a>`」
 - ページタイトルの英字スロットは、ポリシー／公告系では「エイブルグループ」表記（ユーザー指定）
+- PAGE TOP は component 層 `c-pagetop` とし、`<footer>` 後ろ＋`position: fixed` で全ページ共通配置。フッター被り回避は CSS だけでは難しいため JS で `bottom` を動的調整する方式を採用
 - 採用情報ページはコミット漏れで消失（履歴・stash・作業ツリーいずれにも無し）。画像 `img/recuruit/` のみ初回コミットに残存。ゼロから作り直す
 
 ### 触ったファイル
@@ -48,11 +54,13 @@
 - `scss/object/project/_privacy.scss`（新規）
 - `scss/object/project/_customer-harassment.scss`（新規）
 - `scss/object/project/_notice.scss`（新規）
-- `scss/style.scss`（`@use` 4件追加: press / privacy / customer-harassment / notice）
-- `js/script.js`（`setupPressFilter()` 追加、DOMContentLoaded で呼び出し）
+- `scss/object/component/_pagetop.scss`（新規 / PAGE TOP）
+- `scss/style.scss`（`@use` 追加: press / privacy / customer-harassment / notice / component/pagetop）
+- `js/script.js`（`setupPressFilter()` ＋ `setupPageTop()` 追加、DOMContentLoaded で呼び出し）
 - `img/release/filter_bg.png`（ユーザー配置）
-- `index.html`（プレスリリース / プライバシーポリシー / カスハラ / 電子公告リンク、グループ・サステナビリティボタンの繋ぎ込み）
-- `pages/company.html` / `group.html` / `philosophy.html` / `sustainability.html`（フッターサブナビ4項目のリンク繋ぎ込み、company は section3 ボタンも）
+- `index.html`（プレスリリース / プライバシーポリシー / カスハラ / 電子公告リンク、グループ・サステナビリティボタンの繋ぎ込み、PAGE TOP 追加）
+- `pages/company.html` / `group.html` / `philosophy.html` / `sustainability.html`（フッターサブナビ4項目のリンク繋ぎ込み、company は section3 ボタンも。全ページに PAGE TOP 追加）
+- `pages/news.html` / `privacy.html` / `customer-harassment.html` / `notice.html`（新規ページにも PAGE TOP 追加）
 - `css/style.css`（Live Sass Compiler で自動生成）
 - `docs/TODO.md`、`docs/WORKLOG.md`（更新）
 
@@ -63,8 +71,9 @@
 - `p-press` と `p-notice` でカード行スタイルが重複。共通コンポーネント化（例 `c-media-row`）の検討候補
 - プレスリリース「1ページ最大10件」のページネーションUIは未実装（現状は各年≤4件のため不要）
 - `p-notice` の行ホバー / リンクホバーの要否が Figma から未確認
+- `c-pagetop` の暫定値（出現閾値 300px / `right`・`bottom` 4rem / フッター手前余白 40px / 矢印 barb の向き）を Figma で確定
 - 採用情報ページの作り直し（消失分）
-- レスポンシブ未対応 / PAGE TOP 未実装（継続）
+- レスポンシブ未対応（継続）
 
 ---
 

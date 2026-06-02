@@ -67,6 +67,35 @@ function setupPressFilter({ selectSelector, itemSelector }) {
   select.addEventListener('change', () => apply(select.value));
 }
 
+// PAGE TOP ボタン：最上部で非表示／スクロールで出現／フッターに被らない／押下でゆっくり上部へ
+function setupPageTop({ selector }) {
+  const btn = document.querySelector(selector);
+  if (!btn) return;
+
+  const footer = document.querySelector('.l-footer');
+  const showAfter = 300; // 暫定：この px を超えてスクロールしたら表示
+  const gap = 40; // 暫定：フッター手前で空ける余白(px) ＝ CSS の bottom 4rem と揃える
+
+  const update = () => {
+    btn.classList.toggle('is-visible', window.scrollY > showAfter);
+
+    // フッターが画面に入ったら、その分だけボタンを持ち上げて被りを防ぐ
+    if (footer) {
+      const overlap = window.innerHeight - footer.getBoundingClientRect().top;
+      btn.style.bottom = overlap > 0 ? `${overlap + gap}px` : '';
+    }
+  };
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+
+  // html { scroll-behavior: smooth } によりゆっくりスクロールする
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // グループ企業ページ
   setupCurrentNav({
@@ -87,4 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     selectSelector: '.p-press__select',
     itemSelector: '.p-press__item',
   });
+
+  // PAGE TOP（全ページ共通）
+  setupPageTop({ selector: '.c-pagetop' });
 });

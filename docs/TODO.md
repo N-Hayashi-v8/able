@@ -13,6 +13,7 @@
 - [ ] `p-press` と `p-notice` のカード行スタイル重複を共通コンポーネント化するか検討（3つ目が出たら実施の判断軸）
 - [ ] プレスリリースのページネーション（1ページ最大10件）の要否確認・実装（現状は各年≤4件で不要）
 - [ ] `p-notice` の行ホバー / リンクホバーの要否を Figma で確認
+- [ ] `c-pagetop`（PAGE TOP）の暫定値を Figma で確定（出現閾値 300px / `right`・`bottom` 4rem / フッター手前余白 40px / 矢印 barb の向き）
 - [ ] `pages/sustainability.html` の Diversity / Social 本文テキストを Figma 原文に差し替え（現状は判読困難箇所を文意で補完）
 - [ ] `__item-source` のリンク化方針確認（出典名 + ↗アイコンの場合 `<a>` でラップ）
 - [ ] `pages/company.html` の section2 ↗ アイコンの規則精査（ロゴ有無等で表示/非表示の出し分けが必要なら対応）
@@ -35,7 +36,6 @@
 - [ ] p-philosophy / p-group のセクション上下padding値を実Figma値で確定（暫定値）
 - [ ] p-philosophy キャッチコピー背景パターン（trip_pattern）の透過処理（保留中）
 - [ ] レスポンシブ対応（PC → SP もしくは SP → PC、方針未決）
-- [ ] PAGE TOP（共通フローティングUI）の実装。`<body>` 直下 + `position: fixed` で全ページ共通配置を想定
 - [ ] 自ページからのナビリンクの扱い。現在地は無リンク化 + `aria-current="page"` 運用に変えるか要検討
 - [ ] `scrollend` イベント未対応ブラウザへの setTimeout フォールバックの要否判断（現状は Chrome 114+ / Firefox 109+ / Safari 18.2+ のみ動作）
 

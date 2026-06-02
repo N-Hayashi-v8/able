@@ -286,6 +286,80 @@ main {
   margin-bottom: 1.6rem;
 }
 
+.c-pagetop {
+  position: fixed;
+  right: 4rem;
+  bottom: 4rem;
+  z-index: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1.2rem;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #111111;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateY(1rem);
+          transform: translateY(1rem);
+  -webkit-transition: opacity 0.4s, visibility 0.4s, -webkit-transform 0.4s;
+  transition: opacity 0.4s, visibility 0.4s, -webkit-transform 0.4s;
+  transition: opacity 0.4s, visibility 0.4s, transform 0.4s;
+  transition: opacity 0.4s, visibility 0.4s, transform 0.4s, -webkit-transform 0.4s;
+}
+.c-pagetop.is-visible {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+.c-pagetop__icon {
+  position: relative;
+  width: 2rem;
+  height: 2.4rem;
+}
+.c-pagetop__icon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background-color: currentColor;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.c-pagetop__icon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0.8rem;
+  height: 1px;
+  background-color: currentColor;
+  -webkit-transform-origin: left top;
+          transform-origin: left top;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.c-pagetop__text {
+  font-family: "Barlow", "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+  text-align: center;
+  color: #111111;
+}
+
 .p-mv {
   position: relative;
   width: 100%;
