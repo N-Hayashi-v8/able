@@ -1,0 +1,53 @@
+// .p-privacy（プライバシーポリシー本文）
+@use "../../foundation/variables" as *;
+
+.p-privacy {
+  padding: 8rem 4rem 12rem; // 暫定
+
+  &__inner {
+    max-width: 100rem; // 暫定（読みやすい本文幅）
+    margin: 0 auto;
+  }
+
+  &__lead {
+    margin-bottom: 6rem; // 暫定
+    font-family: $font-ja;
+    font-size: 1.6rem; // 暫定
+    line-height: 2;
+  }
+
+  // 条項ブロック（繰り返し）。条項間の縦間隔は隣接セレクタで付ける
+  &__section + &__section {
+    margin-top: 5rem; // 暫定
+  }
+
+  &__heading {
+    margin-bottom: 2rem; // 暫定
+    font-family: $font-ja;
+    font-size: 2.2rem; // 暫定
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  &__text {
+    font-family: $font-ja;
+    font-size: 1.6rem; // 暫定
+    line-height: 2;
+  }
+
+  &__list {
+    margin-top: 1.6rem; // 暫定
+  }
+
+  &__list-item {
+    padding-left: 1em; // 折返し時のインデント揃え
+    font-family: $font-ja;
+    font-size: 1.6rem; // 暫定
+    line-height: 2;
+
+    &::before {
+      content: "・";
+      margin-left: -1em;
+    }
+  }
+}

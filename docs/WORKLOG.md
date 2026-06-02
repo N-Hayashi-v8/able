@@ -6,6 +6,68 @@
 
 ---
 
+## 2026-06-02
+
+### やったこと
+
+- プレスリリース一覧ページ `pages/news.html` 新規作成
+  - 器（head/header/footer/`p-page-title`）は `company.html` 流用、英字 `RELEASE`
+  - `p-press`: 全幅14remの絞り込み帯（背景 `img/release/filter_bg.png`、`__filter-band` > `__filter-inner`）＋ 年プルダウン（`<select>` + 擬似要素の緑シェブロン）＋ カード一覧（日付 + 会社名 + 本文 + PDFタグ、`_news.scss` 踏襲）
+  - ダミー含む10件。各 `<li>` に `data-year` 付与（2024×4 / 2023×3 / 2022×3）
+  - 年プルダウンの絞り込みJS `setupPressFilter()` 実装（`is-hidden` トグル、`all` で全件、change と初期表示の両方で適用）
+  - アイテム hover 背景 `$color-bg-hover`(#eee)、文字 padding `3rem 3rem 4rem 3.4rem`（border・背景は `__inner` 全幅のまま）
+- プライバシーポリシー `pages/privacy.html` 新規作成（`p-privacy`、リード＋見出し付き条項 `__section` 繰り返し、本文はダミー）
+- カスタマーハラスメント基本方針 `pages/customer-harassment.html` 新規作成（`p-customer-harassment`、privacy と同型・同値の別ブロック）
+- 電子公告 `pages/notice.html` 新規作成（`p-notice`）
+  - Figma 実物に合わせ「`c-section-heading` 見出し（決算公告…）＋ 会社グループ（会社名 `h3` ＋ 行リスト）」構造、`company-overview` と同じ「inner 左端見出し + 24rem インデント / 幅104rem」流儀
+  - 行 = 期（`__period`、黒）＋ リンク（`__link`、`$color-link-pdf`）＋ PDFアイコン（`__icon`）
+  - 実データ反映（エイブルHD / パーソナルエステートラボ / エイブル引越サービス の各期・KB）
+- 導線リンクの繋ぎ込み（`href="#"` → 実ページ）
+  - フッターサブナビ4項目（プライバシーポリシー / カスハラ / 電子公告 / プレスリリース）を index ＋ 全子ページで実ページへ
+  - index・各子ページの「プレスリリースを見る」ボタン → `news.html`
+  - `company.html` section3「電子公告はこちら」ボタン → `notice.html`
+  - index トップの「グループ／サステナビリティについて詳しく見る」ボタンの `#` 繋ぎ漏れを修正（→ group.html / sustainability.html）
+
+### 決定事項
+
+- プレスリリースの絞り込みタブは、ボタン群ではなくネイティブ `<select>` ＋ 擬似要素シェブロン方式（JSなしでも開閉成立、`change` に素直に繋がる）
+- 絞り込みは `data-year` 属性 + `is-hidden` クラストグル。JSは `setupPressFilter()` に汎用化（`setupCurrentNav()` と同じ流儀）
+- 「すべて」option を先頭・既定にして全件表示。年選択でその年のみ表示
+- ポリシー系2ページ（privacy / kasuhara）は見出し付き条項の独立ブロックとして別々に実装。SCSSはほぼ重複だが、3つ目の同型が出たら共通ブロック `p-policy` への一本化を検討（`c-section-heading` で実施した「3箇所目で共通化」と同じ判断軸）
+- 電子公告は会社グループ単位のリスト。見出しは共通 `c-section-heading`、リンク色は用途どおり `$color-link-pdf`、各行は期＋リンクで「行全体ではなくリンク部分のみ `<a>`」
+- ページタイトルの英字スロットは、ポリシー／公告系では「エイブルグループ」表記（ユーザー指定）
+- 採用情報ページはコミット漏れで消失（履歴・stash・作業ツリーいずれにも無し）。画像 `img/recuruit/` のみ初回コミットに残存。ゼロから作り直す
+
+### 触ったファイル
+
+- `pages/news.html`（新規）
+- `pages/privacy.html`（新規）
+- `pages/customer-harassment.html`（新規）
+- `pages/notice.html`（新規）
+- `scss/object/project/_press.scss`（新規）
+- `scss/object/project/_privacy.scss`（新規）
+- `scss/object/project/_customer-harassment.scss`（新規）
+- `scss/object/project/_notice.scss`（新規）
+- `scss/style.scss`（`@use` 4件追加: press / privacy / customer-harassment / notice）
+- `js/script.js`（`setupPressFilter()` 追加、DOMContentLoaded で呼び出し）
+- `img/release/filter_bg.png`（ユーザー配置）
+- `index.html`（プレスリリース / プライバシーポリシー / カスハラ / 電子公告リンク、グループ・サステナビリティボタンの繋ぎ込み）
+- `pages/company.html` / `group.html` / `philosophy.html` / `sustainability.html`（フッターサブナビ4項目のリンク繋ぎ込み、company は section3 ボタンも）
+- `css/style.css`（Live Sass Compiler で自動生成）
+- `docs/TODO.md`、`docs/WORKLOG.md`（更新）
+
+### 未解決
+
+- 新規4ファイル（`_press` / `_privacy` / `_customer-harassment` / `_notice`）の `// 暫定` 値を Figma 実測で確定
+- ダミー本文（privacy / kasuhara / news の一部 / notice の英字スロット）を Figma 実テキストに差し替え
+- `p-press` と `p-notice` でカード行スタイルが重複。共通コンポーネント化（例 `c-media-row`）の検討候補
+- プレスリリース「1ページ最大10件」のページネーションUIは未実装（現状は各年≤4件のため不要）
+- `p-notice` の行ホバー / リンクホバーの要否が Figma から未確認
+- 採用情報ページの作り直し（消失分）
+- レスポンシブ未対応 / PAGE TOP 未実装（継続）
+
+---
+
 ## 2026-05-29
 
 ### やったこと

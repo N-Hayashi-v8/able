@@ -48,6 +48,25 @@ function setupCurrentNav({ rootSelector, cardSelector, navItemSelector }) {
   cards.forEach((card) => observer.observe(card));
 }
 
+// プレスリリース一覧：年プルダウンで絞り込む
+// selectSelector: 年を選ぶ <select>
+// itemSelector: data-year を持つ一覧アイテム群
+function setupPressFilter({ selectSelector, itemSelector }) {
+  const select = document.querySelector(selectSelector);
+  const items = document.querySelectorAll(itemSelector);
+  if (!select || items.length === 0) return;
+
+  const apply = (year) => {
+    items.forEach((item) => {
+      const hidden = year !== 'all' && item.dataset.year !== year;
+      item.classList.toggle('is-hidden', hidden);
+    });
+  };
+
+  apply(select.value); // 初期表示もプルダウンの選択値に合わせる
+  select.addEventListener('change', () => apply(select.value));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // グループ企業ページ
   setupCurrentNav({
@@ -61,5 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
     rootSelector: '.p-sus-action',
     cardSelector: '.p-sus-action-group',
     navItemSelector: '.p-sus-action__nav-item',
+  });
+
+  // プレスリリース一覧ページ
+  setupPressFilter({
+    selectSelector: '.p-press__select',
+    itemSelector: '.p-press__item',
   });
 });

@@ -1,0 +1,78 @@
+// .p-notice（電子公告 / 決算公告一覧）
+// 見出しは c-section-heading 併用。コンテンツは「inner 左端の見出し + 24rem インデント」流儀
+@use "../../foundation/variables" as *;
+
+.p-notice {
+  padding: 12rem 0; // 暫定
+
+  &__inner {
+    max-width: 128rem;
+    margin: 0 auto;
+  }
+
+  // 見出し（c-section-heading が「短い装飾線 + 太字」を提供）
+  &__heading {
+    // スタイルは c-section-heading 側
+  }
+
+  // 会社グループ群（見出しから 24rem インデント）
+  &__groups {
+    margin-top: 6rem; // 暫定
+    margin-left: 24rem; // Figma 左余白 240px
+    width: 104rem; // Figma コンテンツ幅 1040px
+  }
+
+  &__group + &__group {
+    margin-top: 6rem; // 暫定（グループ間）
+  }
+
+  &__group-name {
+    margin-bottom: 1.6rem; // 暫定
+    font-family: $font-ja;
+    font-weight: 700;
+    font-size: 2rem; // 暫定
+    line-height: 1.5;
+  }
+
+  &__list {
+    border-top: 1px solid $color-border;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 2rem; // 暫定
+    padding: 2rem 0; // 暫定
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__period {
+    width: 14rem; // 暫定
+    flex-shrink: 0;
+    font-family: $font-ja;
+    font-weight: 500;
+    font-size: 1.4rem; // 暫定
+    line-height: 1.5;
+  }
+
+  // PDF へのリンク（電子公告リンク色）
+  &__link {
+    font-family: $font-ja;
+    font-size: 1.4rem; // 暫定
+    line-height: 1.5;
+    color: $color-link-pdf;
+  }
+
+  &__icon {
+    display: inline-block;
+    margin-left: 0.8rem;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid $color-text-pdf;
+    font-family: $font-en;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1;
+    color: $color-text-pdf;
+    vertical-align: middle;
+  }
+}
