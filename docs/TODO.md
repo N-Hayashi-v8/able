@@ -7,7 +7,6 @@
 
 ## 翌日（次回作業日）にやること
 
-- [ ] 採用情報ページをゼロから作り直し（コミット漏れで消失。画像 `img/recuruit/` のみ残存。ヘッダー/フッターの「採用情報」が全ページ `href="#"` のまま）
 - [ ] 新規4ファイル（`_press` / `_privacy` / `_customer-harassment` / `_notice`）の `// 暫定` 値を Figma 実測で確定
 - [ ] ダミー本文の差し替え（`privacy.html` / `customer-harassment.html` / `news.html` の一部 / `notice.html` の英字スロット「エイブルグループ」）
 - [ ] `p-press` と `p-notice` のカード行スタイル重複を共通コンポーネント化するか検討（3つ目が出たら実施の判断軸）
