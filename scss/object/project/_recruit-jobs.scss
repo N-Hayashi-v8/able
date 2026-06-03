@@ -1,0 +1,92 @@
+@use "../../foundation/variables" as *;
+
+.p-recruit-jobs {
+  padding-top: 9rem; // lead 上マージン（Figma 90px）
+  padding-bottom: 15rem; // フッターとの間隔（margin だと main 外へ相殺するため padding）
+
+  &__inner {
+    max-width: 128rem;
+    margin-inline: auto;
+  }
+
+  &__lead {
+    max-width: 91rem; // Figma 910px
+    margin-inline: auto;
+    font-weight: 500;
+    font-size: 1.8rem;
+    line-height: 1.78; // Figma 32px / 18px
+    text-align: center;
+  }
+
+  &__companies {
+    margin-top: 6rem; // 暫定: lead ↔ 社カード群の間隔
+    display: flex;
+    flex-direction: column;
+    gap: 4rem; // 暫定: 社カード間の縦間隔
+  }
+
+  &__company {
+    position: relative; // 装飾線の基準
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; // 内部要素（社名・カード群）を左揃え
+    min-height: 45rem; // Figma 450px（固定せず下限）
+    padding: 6rem 8rem;
+    background-color: $color-text-white;
+  }
+
+  // 最初のカードのみ上端左に短い黒装飾線
+  &__company--bar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4rem; // 暫定: 横幅は company-group 流儀を踏襲
+    height: 0.4rem; // Figma 4px
+    background-color: $color-text;
+  }
+
+  &__company-head {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem; // 暫定: ロゴ ↔ 社名
+  }
+
+  &__logo {
+    width: 14.4rem; // Figma 144.95px → 144px
+    height: auto;
+  }
+
+  &__company-name {
+    font-weight: 700;
+    font-size: 3.2rem;
+    line-height: 1.9; // Figma 61px / 32px
+  }
+
+  &__cards {
+    margin-top: 4rem; // 暫定: 社名 ↔ カード群
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5rem; // 50px（左右padding80px時に右余白が90pxになる値）
+  }
+
+  &__card-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24rem; // 240px 固定
+    height: 18rem; // 180px 固定
+    border: 1px solid $color-key;
+    color: $color-key;
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 1.5; // Figma 36px / 24px
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+
+    &:hover {
+      background-color: $color-key;
+      color: $color-text-white;
+    }
+  }
+}

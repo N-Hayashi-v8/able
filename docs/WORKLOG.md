@@ -72,8 +72,53 @@
 - プレスリリース「1ページ最大10件」のページネーションUIは未実装（現状は各年≤4件のため不要）
 - `p-notice` の行ホバー / リンクホバーの要否が Figma から未確認
 - `c-pagetop` の暫定値（出現閾値 300px / `right`・`bottom` 4rem / フッター手前余白 40px / 矢印 barb の向き）を Figma で確定
-- 採用情報ページの作り直し（消失分）
 - レスポンシブ未対応（継続）
+
+---
+
+## 2026-06-01
+
+### やったこと
+
+- 採用情報ページ `pages/recruit.html` を新規作成（`company.html` を雛形に head / header / footer / `p-page-title` 流用）
+  - `<title>`「採用情報｜エイブル株式会社-模写」、英字 `RECRUIT`、breadcrumb 末尾「採用情報」
+- サイト内「採用情報」リンク（`href="#"`）を全6ページのヘッダー/フッターで設定（`index.html` は `pages/recruit.html`、下層は `recruit.html`）
+- `p-recruit-mv`（全幅リード画像、`p-sus-mv` 同型）新規。画像は `img/recuruit/img_lead (1) 1.png`
+- `p-recruit-jobs` セクション実装（リード文 + 企業2社 + 採用種別カード）
+  - ユーザーの手書きHTMLを BEM 整理。繰り返し構造を `ul/li` 化（`__companies > __company`、`__cards > __card`）
+  - リード文: `max-width: 91rem` 中央寄せ / `1.8rem` / `line-height: 1.78`、セクション `padding-top: 9rem`
+  - 社カード（`__company`）: 白背景 / `min-height: 45rem`（450px、固定せず下限）/ `padding: 6rem 8rem` / 左揃え（`align-items: flex-start`）
+  - 最初の社カードのみ `--bar` modifier で上端左に黒装飾線（`4rem × 0.4rem`）
+  - `__company-head`: ロゴ `14.4rem`（144.95px→144px）+ 社名 `3.2rem` / 700、gap 2.4rem（暫定）
+  - `__cards`: flex wrap / `gap: 5rem`（右余白90pxになる逆算値）
+  - `__card-link`: `240 × 180` 固定 / 緑枠 `1px solid $color-key` / 緑文字 `2.4rem` / 700 / 中央寄せ / **hover で色反転**（背景緑・文字白、transition付き）
+  - フッターとの間隔は `padding-bottom: 15rem`
+
+### 決定事項
+
+- 採用情報ページのプレフィックスは `p-recruit-`（MV は `p-recruit-mv`、本体は `p-recruit-jobs`）
+- 採用種別カードは padding 駆動をやめ `240 × 180` 固定サイズ + flex 中央寄せに変更（見栄え優先。height 固定はユーザー指定で policy より優先）
+- 最初の社カードの装飾線は `:first-child`（DOM位置依存）ではなく BEM modifier `--bar` で明示（SDGs の `--col-4` と同流儀）
+- セクション下端の余白は `margin-bottom` ではなく `padding-bottom`。`main` に padding/border が無いため子の `margin-bottom` が margin collapsing で `main` 外へ抜け、余白がグレーでなく白（フッター背景）になる問題を回避
+- カード右余白90px は「白カード1280px・カード240px・左右padding80px」前提で `gap = 50px（5rem）` から逆算（`960 + 50×3 = 1110`、余り10px + 右padding80px = 90px）
+
+### 触ったファイル
+
+- `pages/recruit.html`（新規作成、`<main>` 全実装）
+- `index.html`、`pages/philosophy.html`、`pages/group.html`、`pages/sustainability.html`、`pages/company.html`（採用情報リンク差し替え）
+- `scss/object/project/_recruit-mv.scss`（新規）
+- `scss/object/project/_recruit-jobs.scss`（新規）
+- `scss/style.scss`（`@use` 2件追加: recruit-mv / recruit-jobs）
+- `css/style.css`（Live Sass Compiler で自動生成）
+- `docs/TODO.md`、`docs/WORKLOG.md`（更新）
+
+### 未解決
+
+- `_recruit-jobs.scss` の `// 暫定` 値: `__company-head` gap（2.4rem）/ `__cards` margin-top（4rem）/ `__companies` gap（4rem）・margin-top（6rem）/ 装飾線の横幅（4rem）。Figma 実測で確定する作業が残る
+- `__card-link` の `height` 固定（180px）はレスポンシブ時に再検討（min-height 化等）
+- ロゴ `alt=""` のまま（装飾扱い、社名が隣接 `h2` にあるため許容）
+- レスポンシブ未対応（持ち越し）
+- PAGE TOP 未実装（持ち越し）
 
 ---
 
